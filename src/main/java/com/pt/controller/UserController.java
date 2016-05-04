@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.entity.User;
 import com.pt.service.IUserService;
@@ -16,16 +18,19 @@ public class UserController {
 	@Resource
 	private IUserService userService;
 	
-	@RequestMapping("/showUser")
-	public String showUser(HttpServletRequest request,Model model){
+	@RequestMapping(value = "/showUser")
+	public ModelAndView showUser(HttpServletRequest request){
 		int userId = Integer.parseInt(request.getParameter("id"));
 		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
+		ModelAndView mv= new ModelAndView();
+		mv.addObject("user", user);
+		return mv;
 	}
 	
-	@RequestMapping("/blogHome")
-	public String blogHome(HttpServletRequest request,Model model){
-		return "blogHome";
+	@RequestMapping(value = "/test")
+	@ResponseBody
+	public String test(HttpServletRequest request){
+		return "{\"msg\":\"you say:'yes'\"}";
 	}
+
 }
