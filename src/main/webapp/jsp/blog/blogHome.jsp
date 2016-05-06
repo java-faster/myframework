@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Runner, Free Web Template from templatemo</title>
+<title>葛宏斌的世界</title>
 <meta name="keywords" content="runner, templatemo, free web template, black, white, CSS, HTML" />
 <meta name="description" content="Runner Theme is a stylish website template by templatemo.com for free download. Homepage is integrated with curved beautiful slider." />
 <link href="${pageContext.request.contextPath}/templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -45,28 +45,27 @@ ddsmoothmenu.init({
 <div id="templatemo_wrapper">
 
 	<div id="templatemo_header">
-    	<div id="site_title"><a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/blog/blogHome" class="selected">主页</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">About</a>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
                     <ul>
-                        <li><a href="#">Sub Page One</a></li>
-                        <li><a href="#">Sub Page Two</a></li>
-                        <li><a href="#">Sub Page Three</a></li>
+                        <li><a href="#">个人独白</a></li>
+                        <li><a href="#">个人经历</a></li>
+                        <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">Gallery</a>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">相册</a>
                     <ul>
-                        <li><a href="#">Page Link One</a></li>
-                        <li><a href="#">Link Two</a></li>
-                        <li><a href="#">Page Link Three</a></li>
-                        <li><a href="#">Link Four</a></li>
-                        <li><a href="#">Page Link Five</a></li>
+                        <li><a href="#">2016-01-05</a></li>
+                        <li><a href="#">2016-01-04</a></li>
+                        <li><a href="#">2016-01-03</a></li>
+                        <li><a href="#">2016-01-02</a></li>
+                        <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/jsp/blog/blog.html">Blog</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">Contact</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->

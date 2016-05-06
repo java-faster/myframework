@@ -15,4 +15,10 @@ public class BlogController {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
+	
+	@RequestMapping(value = "/blog")
+	public ModelAndView blog(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
 }
