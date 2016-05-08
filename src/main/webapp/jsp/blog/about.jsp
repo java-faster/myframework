@@ -1,3 +1,4 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -43,28 +44,27 @@ ddsmoothmenu.init({
 
 <div id="templatemo_wrapper">
 	<div id="templatemo_header">
-    	<div id="site_title"><a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="selected">About</a>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3" >日志</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/photo">相册</a>
                     <ul>
-                        <li><a href="#">Sub Page One</a></li>
-                        <li><a href="#">Sub Page Two</a></li>
-                        <li><a href="#">Sub Page Three</a></li>
+                        <li><a href="#">2016-01-05</a></li>
+                        <li><a href="#">2016-01-04</a></li>
+                        <li><a href="#">2016-01-03</a></li>
+                        <li><a href="#">2016-01-02</a></li>
+                        <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
-                <li><a href="portfolio.html">Gallery</a>
+                <li><a href="${pageContext.request.contextPath}/blog/about" class="selected">关于我</a>
                     <ul>
-                        <li><a href="#">Page Link One</a></li>
-                        <li><a href="#">Link Two</a></li>
-                        <li><a href="#">Page Link Three</a></li>
-                        <li><a href="#">Link Four</a></li>
-                        <li><a href="#">Page Link Five</a></li>
+                        <li><a href="#">个人独白</a></li>
+                        <li><a href="#">个人经历</a></li>
+                        <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/contact">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->

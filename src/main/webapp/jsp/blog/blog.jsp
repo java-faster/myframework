@@ -49,8 +49,8 @@ ddsmoothmenu.init({
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3" class="selected">日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">相册</a>
+                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  class="selected">日志</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/photo">相册</a>
                     <ul>
                         <li><a href="#">2016-01-05</a></li>
                         <li><a href="#">2016-01-04</a></li>
@@ -59,14 +59,14 @@ ddsmoothmenu.init({
                         <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
+                <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
                     <ul>
                         <li><a href="#">个人独白</a></li>
                         <li><a href="#">个人经历</a></li>
                         <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">联系我</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/contact">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->
@@ -123,14 +123,9 @@ ddsmoothmenu.init({
 			<div class="sidebar_section sidebar_section_bg">
                 <h3>分类</h3>
                 <ul class="sidebar_link_list">
-                    <li><a href="#">Consectetur adipiscing</a></li>
-                    <li><a href="#">Nullam vulputate est</a></li>
-                    <li><a href="#">Duis porta velit</a></li>
-                    <li><a href="#">Pretium suscipit</a></li>
-                    <li><a href="#">Cras pulvinar eget lacus</a></li>
-                    <li><a href="#">Duis in libero est</a></li>
-                    <li><a href="#">Aenean tincidunt</a></li>
-                    <li><a href="#">Morbi tempus iaculis</a></li>
+                	<c:forEach items="${categoriesList }" var="categories" varStatus="row">
+                    	<li><a href="#">${categories.name }</a></li>
+                    </c:forEach>
                 </ul>
 			</div>
             

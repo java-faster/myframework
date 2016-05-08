@@ -1,3 +1,6 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -46,9 +49,9 @@ ddsmoothmenu.init({
 	<div id="templatemo_header">
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3" class="selected">日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">相册</a>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome" >主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  >日志</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/photo" class="selected">相册</a>
                     <ul>
                         <li><a href="#">2016-01-05</a></li>
                         <li><a href="#">2016-01-04</a></li>
@@ -57,22 +60,22 @@ ddsmoothmenu.init({
                         <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
+                <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
                     <ul>
                         <li><a href="#">个人独白</a></li>
                         <li><a href="#">个人经历</a></li>
                         <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">联系我</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/contact">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->
     </div> <!-- END of header -->
     
     <div id="templatemo_page_intro">
-    	<h1>Portfolio</h1>
-        <p>Pellentesque in sapien quis quam commodo luctus ut dictum ligula. Sed gravida elementum purus in egestas. Mauris placerat velit at eleifend varius. Cras at neque dui.</p>
+    	<h1>我的相册</h1>
+        <p>记录生活的点滴。。。</p>
     </div>
     
     
@@ -147,7 +150,7 @@ ddsmoothmenu.init({
         <div class="col col_3">
         	<h4>Twitter</h4>
       		<ul class="nobullet twitter">
-                <li><a href="#">@网站模板</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
+                <li><a href="#">@ç½ç«æ¨¡æ¿</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
                 <li>Suspendisse enean <a href="#">#FREE</a> website template, mi lacus gravida nisi, vitae commodo orci nisi non nulla.</li>
                 <li>Sed non varius lorem, in sollicitudin lectus. Cras vel urna a urna gravida consequat. Curabitur non risus dui. <a  href="#">#</a></li>
                 <li><a href="#" title="stockphoto" class="rower"  target="_blank">stockphoto</a></li>
@@ -173,7 +176,7 @@ ddsmoothmenu.init({
 
 <div id="templatemo_footer_wrapper">
 	<div id="templatemo_footer">
-    	Copyright © 2084 Company Name | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> | Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+    	Copyright Â© 2084 Company Name | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a> | Collect from <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a>
     </div> <!-- END of footer -->
 </div> <!-- END of footer wrapper -->
 

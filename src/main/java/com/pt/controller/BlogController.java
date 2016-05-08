@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.service.IBlogService;
+import com.pt.service.ICategoriesService;
 import com.pt.util.StringUtils;
 
 @Controller
@@ -15,6 +16,8 @@ import com.pt.util.StringUtils;
 public class BlogController {
 	@Resource
 	private IBlogService blogService;
+	@Resource
+	private ICategoriesService categoriesService;
 	
 	@RequestMapping(value = "/blogHome")
 	public ModelAndView blogHome(HttpServletRequest request){
@@ -45,6 +48,26 @@ public class BlogController {
 			pageMaxNo ++;
 		}
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
+		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/photo")
+	public ModelAndView photo(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	
+	@RequestMapping(value = "/about")
+	public ModelAndView about(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	
+	@RequestMapping(value = "/contact")
+	public ModelAndView contact(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 }
