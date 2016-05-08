@@ -1,8 +1,11 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Runner, Blog Posts</title>
+<title>葛宏斌的世界</title>
 <meta name="keywords" content="runner, blog posts, free template, CSS, HTML" />
 <meta name="description" content="Runner, Blog Posts, free blog template by templatemo.com" />
 <link href="${pageContext.request.contextPath}/templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -43,104 +46,72 @@ ddsmoothmenu.init({
 
 <div id="templatemo_wrapper">
 	<div id="templatemo_header">
-    	<div id="site_title"><a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3" class="selected">日志</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">相册</a>
                     <ul>
-                        <li><a href="#">Sub Page One</a></li>
-                        <li><a href="#">Sub Page Two</a></li>
-                        <li><a href="#">Sub Page Three</a></li>
+                        <li><a href="#">2016-01-05</a></li>
+                        <li><a href="#">2016-01-04</a></li>
+                        <li><a href="#">2016-01-03</a></li>
+                        <li><a href="#">2016-01-02</a></li>
+                        <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
-                <li><a href="portfolio.html">Gallery</a>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
                     <ul>
-                        <li><a href="#">Page Link One</a></li>
-                        <li><a href="#">Link Two</a></li>
-                        <li><a href="#">Page Link Three</a></li>
-                        <li><a href="#">Link Four</a></li>
-                        <li><a href="#">Page Link Five</a></li>
+                        <li><a href="#">个人独白</a></li>
+                        <li><a href="#">个人经历</a></li>
+                        <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="blog.html" class="selected">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->
     </div> <!-- END of header -->
     
     <div id="templatemo_page_intro">
-    	<h1>Our Blog</h1>
-        <p>Pellentesque rhoncus placerat eros, et imperdiet diam sagittis semper. Curabitur purus quam, rutrum eget ante ut, accumsan gravida odio.</p>
+    	<h1>我的日志</h1>
+        <p>记录我的感悟，学习笔记，旅行日志，书评，以及各种琐事。。。</p>
     </div>
     
     
     <div id="templatemo_main">
     	<div id="templatemo_content" class="left">
+    		<c:forEach items="${bloglist }" var="blog" varStatus="row">
             <div class="post-item">
             	<div class="post-meta">
                 	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
                     <div class="post-meta-content">
-                    	<h2>Lorem Ipsum Dolor Sit Amet</h2>
-                        Posted by <span><a href="#">Designer</a></span>
-                		| <span><a href="#">18 January 2084</a></span>
-                        in <span><a href="#">New</a>, <a href="#">Design</a></span>
+                    	<h2>${blog.title}</h2>
+                        Posted by <span>葛宏斌</span>
+                		| <span><a href="#"><fmt:formatDate value="${blog.addTime}" pattern="yyyy-MM-dd"/></a></span>
+                        in <span><a href="#">${blog.location}</a></span>
                     </div>
-                    <span class="post_comment">10</span>
+                    <span class="post_comment">${blog.commentCount}</span>
                     <div class="clear"></div>
 				</div>
-                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}/images/blog/01.jpg" alt="Post Image 1" />
-                <p>In suscipit turpis non odio fringilla congue. Curabitur et nibh massa, eget euismod sapien. Mauris pulvinar nisi ut mi placerat interdum. Sed commodo, lectus sit amet fermentum posuereligula orci venenatis augue, id porta magna ipsum id nunc. Validate <a href="#" ><strong>XHTML</strong></a> &amp; <a href="#" ><strong>CSS</strong></a>.</p>
-                <a class="more" href="fullpost.html">More</a>
+                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
+                <p>${blog.description}</p>
+                <a class="more" href="fullpost.html">详细</a>
 			</div>
-            
-            <div class="post-item">
-            	<div class="post-meta">
-                	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
-                    <div class="post-meta-content">
-                    	<h2>Cras Sit Amet Augue Diam</h2>
-                        Posted by <span><a href="#">John</a></span>
-                		| <span><a href="#">16 January 2084</a></span>
-                        in <span><a href="#">Marketing</a>, <a href="#">Advertising</a></span>
-                    </div>
-                    <span class="post_comment">12</span>
-                    <div class="clear"></div>
-				</div>
-                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}/images/blog/02.jpg" alt="Post Image 2" />
-                <p>Aenean vel consectetur diam. Nunc tempus metus quam. Phasellus venenatis iaculis laoreet. Curabitur ullamcorper ornare sapien, ut lacinia quam gravida et. Morbi facilisis mattis molestie. Sed sit amet libero pretium mi malesuada ullamcorper.</p>
-                <a class="more" href="fullpost.html">More</a>
-			</div>
-            
-            <div class="post-item last_post">
-            	<div class="post-meta">
-                	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
-                    <div class="post-meta-content">
-                    	<h2>Laoreet Magna Facilisis Lacus Eget</h2>
-                        Posted by <span><a href="#">Admin</a></span>
-                		| <span><a href="#">14 January 2084</a></span>
-                        in <span><a href="#">Artwork</a>, <a href="#">Painting</a></span>
-                    </div>
-                    <span class="post_comment">24</span>
-                    <div class="clear"></div>
-				</div>
-                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}/images/blog/03.jpg" alt="Post Image 3" />
-                <p>Donec non lectus urna, sed ornare magna. Morbi fringilla lorem at nulla porttitor et semper quam molestie. Nullam justo nisl, feugiat non tempor a, luctus imperdiet magna. Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est, sit amet auctor metus neque ut nisl. </p>
-                <a class="more" href="fullpost.html">More</a>
-			</div>
+			</c:forEach>
             
             <div class="clear"></div>
             
             <div class="templatemo_paging">
                 <ul>
-                    <li><a  href="http://www.cssmoban.com" target="_parent">Previous</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">1</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">2</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">3</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">4</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">5</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/6" target="_parent">6</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/7" target="_parent">Next</a></li>
+                    <c:if test="${pageNo ne 1}">
+                   	    <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=${pageNo - 1}&pageSize=3" target="_parent">Previous</a></li>
+                    </c:if>
+                    <c:forEach items="${pageNoList }" var="item" varStatus="row">
+                    <li ><a style="<c:if test='${row.index + 1 eq pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/blog/blog?pageNo=${row.index + 1}&pageSize=3" target="_parent" >${row.index + 1}</a></li>
+					</c:forEach>
+                    <c:if test="${pageNo * pageSize lt blogcount}">
+                        <li><a  href="${pageContext.request.contextPath}/blog/blog?pageNo=${pageNo + 1}&pageSize=3" target="_parent">Next</a></li>
+                    </c:if>
                 </ul>
                 <div class="clear"></div>
             </div>
@@ -150,7 +121,7 @@ ddsmoothmenu.init({
 		<div id="templatemo_sidebar" class="right">
 			
 			<div class="sidebar_section sidebar_section_bg">
-                <h3>Categories</h3>
+                <h3>分类</h3>
                 <ul class="sidebar_link_list">
                     <li><a href="#">Consectetur adipiscing</a></li>
                     <li><a href="#">Nullam vulputate est</a></li>
@@ -200,7 +171,7 @@ ddsmoothmenu.init({
             </div>
             
             <div class="sidebar_section sidebar_section_bg">
-                <h3>Blogroll</h3>
+                <h3>友情链接</h3>
                 <ul class="sidebar_link_list">
                     <li><a href="#">Mauris vel gravida est</a></li>
                     <li><a href="#">Duis in libero est</a></li>

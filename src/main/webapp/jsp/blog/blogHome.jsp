@@ -47,14 +47,8 @@ ddsmoothmenu.init({
 	<div id="templatemo_header">
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/blog/blogHome" class="selected">主页</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
-                    <ul>
-                        <li><a href="#">个人独白</a></li>
-                        <li><a href="#">个人经历</a></li>
-                        <li><a href="#">我的简历</a></li>
-                  </ul>
-                </li>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3" class="selected">日志</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/blog/portfolio.html">相册</a>
                     <ul>
                         <li><a href="#">2016-01-05</a></li>
@@ -64,7 +58,13 @@ ddsmoothmenu.init({
                         <li><a href="#">2016-01-01</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/jsp/blog/blog.html">Blog</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/blog/about.html">关于我</a>
+                    <ul>
+                        <li><a href="#">个人独白</a></li>
+                        <li><a href="#">个人经历</a></li>
+                        <li><a href="#">我的简历</a></li>
+                  </ul>
+                </li>
                 <li><a href="${pageContext.request.contextPath}/jsp/blog/contact.html">联系我</a></li>
             </ul>
             <br style="clear: left" />
