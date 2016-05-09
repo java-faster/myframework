@@ -1,3 +1,4 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -305,7 +306,7 @@ ddsmoothmenu.init({
                 <li><a href="#">@网站模板</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
                 <li>Suspendisse enean <a href="#">#FREE</a> website template, mi lacus gravida nisi, vitae commodo orci nisi non nulla.</li>
                 <li>Sed non varius lorem, in sollicitudin lectus. Cras vel urna a urna gravida consequat. Curabitur non risus dui. <a  href="#">#</a></li>
-                <li><a href="/" title="照片" class="rower"  >照片</a></li>
+                <li><a href="#" title="" class="rower"  target="_blank"></a></li>
             </ul>
         </div>
         
@@ -328,9 +329,10 @@ ddsmoothmenu.init({
 
 <div id="templatemo_footer_wrapper">
 	<div id="templatemo_footer">
-    	Copyright © 2084 Company Name | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> | Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+    	Copyright © 2084 Company Name ptghb
     </div> <!-- END of footer -->
 </div> <!-- END of footer wrapper -->
+
 
 </body>
 <script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>

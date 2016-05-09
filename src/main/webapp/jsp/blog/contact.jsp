@@ -151,10 +151,10 @@ ddsmoothmenu.init({
         <div class="col col_3">
         	<h4>Twitter</h4>
       		<ul class="nobullet twitter">
-                <li><a href="#">@ç½ç«æ¨¡æ¿</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
+                <li><a href="#">@网站模板</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
                 <li>Suspendisse enean <a href="#">#FREE</a> website template, mi lacus gravida nisi, vitae commodo orci nisi non nulla.</li>
                 <li>Sed non varius lorem, in sollicitudin lectus. Cras vel urna a urna gravida consequat. Curabitur non risus dui. <a  href="#">#</a></li>
-                <li><a href="#"  class="rower"  target="_blank">é«æ¸è¡ç¥¨ç§ç</a></li>
+                <li><a href="#" title="" class="rower"  target="_blank"></a></li>
             </ul>
         </div>
         
@@ -177,9 +177,10 @@ ddsmoothmenu.init({
 
 <div id="templatemo_footer_wrapper">
 	<div id="templatemo_footer">
-    	Copyright Â© 2084 Company Name | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a> | Collect from <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a>
+    	Copyright © 2084 Company Name ptghb
     </div> <!-- END of footer -->
 </div> <!-- END of footer wrapper -->
+
 
 </body>
 <script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>

@@ -232,9 +232,10 @@ ddsmoothmenu.init({
 
 <div id="templatemo_footer_wrapper">
 	<div id="templatemo_footer">
-    	Copyright © 2084 Company Name | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> | Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+    	Copyright © 2084 Company Name ptghb
     </div> <!-- END of footer -->
 </div> <!-- END of footer wrapper -->
+
 
 </body>
 <script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
