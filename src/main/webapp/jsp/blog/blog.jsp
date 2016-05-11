@@ -50,7 +50,7 @@ ddsmoothmenu.init({
             <ul>
                 <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  class="selected">日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/photo">相册</a>
+                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4">相册</a>
                     <ul>
                         <li><a href="#">2016-01-05</a></li>
                         <li><a href="#">2016-01-04</a></li>

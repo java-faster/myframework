@@ -51,7 +51,7 @@ ddsmoothmenu.init({
             <ul>
                 <li><a href="${pageContext.request.contextPath}/blog/blogHome" >主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  >日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/photo" class="selected">相册</a>
+                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" class="selected">相册</a>
                     <ul>
                         <li><a href="#">2016-01-05</a></li>
                         <li><a href="#">2016-01-04</a></li>
@@ -80,52 +80,33 @@ ddsmoothmenu.init({
     
     
     <div id="templatemo_main">
-    
-    	<div class="col col_2">
-        	<img src="${pageContext.request.contextPath}/images/portfolio/01.jpg" alt="image" />	
-            <p class="image_caption">Pellentesque blandit, nisl tempus ullamcorper sollicitudin, lorem ipsum ultricies nunc, ac sollicitudin dolor mauris a est. Praesent at ultricies lacus. Sed id massa quam. Validate <a href="#" ><strong>XHTML</strong></a> &amp; <a href="#" ><strong>CSS</strong></a>.
-            <a href="#" class="more">Visit</a>
-            </p>
-        </div>
-        
-        <div class="col col_2 no_mr">
-        	<img src="${pageContext.request.contextPath}/images/portfolio/02.jpg" alt="image" />	
-            <p class="image_caption">Donec id magna ut mauris ultricies vulputate et a lectus. Fusce eget risus lorem, sed ornare nunc. Praesent eget leo quis lorem pulvinar bibendum sed sit amet nibh.  
-            <a href="#" class="more">Visit</a>
-            </p>	
-        </div>
-        
-        <div class="clear"></div>
-        
-        <div class="col col_2">
-        	<img src="${pageContext.request.contextPath}/images/portfolio/03.jpg" alt="image" />	
-            <p class="image_caption">Suspendisse eget erat neque, id ultricies eros. Aenean eu felis vel arcu imperdiet rhoncus ut consectetur erat. Suspendisse pretium, quam ac lobortis cursus at vulputate est purus in ante.
-            <a href="#" class="more">Visit</a>
-            </p>
-        </div>
-        
-        <div class="col col_2 no_mr">
-        	<img src="${pageContext.request.contextPath}/images/portfolio/04.jpg" alt="image" />	
-            <p class="image_caption">Donec non lectus urna, sed ornare magna. Morbi fringilla lorem at nulla porttitor et semper quam molestie. Nullam justo nisl, feugiat non tempor a, luctus imperdiet magna.
-            <a href="#" class="more">Visit</a>
-            </p>	
-        </div>
-        
-        <div class="clear"></div>
-            
-            <div class="templatemo_paging">
-                <ul>
-                    <li><a  href="http://www.cssmoban.com" target="_parent">Previous</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">1</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">2</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">3</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">4</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">5</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/6" target="_parent">6</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/7" target="_parent">Next</a></li>
-                </ul>
+    	<c:forEach items="${grouplist }" var="group" varStatus="row">
+    	<c:if test=""></c:if>
+	    	<div class="col col_2 <c:if test='${row.index % 2 ne 0}'>no_mr</c:if>">
+	        	<img src="${pageContext.request.contextPath}${group.imgPath}" alt="image" />	
+	            <p class="image_caption">${group.groupName}
+	            <a href="#" class="more">Visit</a>
+	            </p>
+	        </div>
+	        <c:if test='${row.index % 2 ne 0}'>
                 <div class="clear"></div>
-            </div>
+            </c:if>
+        </c:forEach>
+            
+        <div class="templatemo_paging">
+            <ul>
+                <c:if test="${pageNo ne 1}">
+               	    <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=${pageNo - 1}&pageSize=4" target="_parent">Previous</a></li>
+                </c:if>
+                <c:forEach items="${pageNoList }" var="item" varStatus="row">
+                    <li ><a style="<c:if test='${row.index + 1 eq pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/blog/photogroup?pageNo=${row.index + 1}&pageSize=4" target="_parent" >${row.index + 1}</a></li>
+	            </c:forEach>
+                <c:if test="${pageNo * pageSize lt blogcount}">
+                    <li><a  href="${pageContext.request.contextPath}/blog/photogroup?pageNo=${pageNo + 1}&pageSize=4" target="_parent">Next</a></li>
+                </c:if>
+            </ul>
+            <div class="clear"></div>
+        </div>
             
     </div> <!-- END of main -->
 </div> <!-- END of wrapper -->

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
+import com.pt.service.IPhotoService;
 import com.pt.util.StringUtils;
 
 @Controller
@@ -18,6 +19,8 @@ public class BlogController {
 	private IBlogService blogService;
 	@Resource
 	private ICategoriesService categoriesService;
+	@Resource
+	private IPhotoService photoService;
 	
 	@RequestMapping(value = "/blogHome")
 	public ModelAndView blogHome(HttpServletRequest request){
@@ -53,9 +56,31 @@ public class BlogController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/photo")
-	public ModelAndView photo(HttpServletRequest request){
+	@RequestMapping(value = "/photogroup")
+	public ModelAndView photoGroup(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
+		
+		String pageNo = request.getParameter("pageNo");
+		String pageSize = request.getParameter("pageSize");
+		
+		if(!StringUtils.isNumberic(pageNo)||!StringUtils.isNumberic(pageSize)){
+			return mv;
+		}
+		
+		Integer stanum = (Integer.valueOf(pageNo)-1) * Integer.valueOf(pageSize);
+		Integer offset = Integer.valueOf(pageSize);
+		
+		mv.addObject("grouplist",photoService.getPhotoGroupList(stanum,offset));
+		mv.addObject("groupcount", photoService.getPhotoGroupAllList().size());
+		
+		mv.addObject("pageNo", Integer.valueOf(pageNo));
+		mv.addObject("pageSize", Integer.valueOf(pageSize));
+		int pageMaxNo = photoService.getPhotoGroupAllList().size()/Integer.valueOf(pageSize);
+		if(photoService.getPhotoGroupAllList().size()%Integer.valueOf(pageSize)!=0){
+			pageMaxNo ++;
+		}
+		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
 		return mv;
 	}
 	

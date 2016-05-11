@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
-  <classPathEntry location="F:\mvn\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+  <classPathEntry location="E:\maven\maven\maven-repository-254\mysql\mysql-connector-java\5.1.25\mysql-connector-java-5.1.25.jar"/>
 
   <context id="context1" >
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/my_db" userId="root" password="root" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/my_db" userId="root" password="111111" />
     <javaModelGenerator targetPackage="com.pt.entity" targetProject="myframework/src/main/java" >
 		<property name="enableSubPackages" value="true"/>
 		<property name="trimStrings" value="true"/>
