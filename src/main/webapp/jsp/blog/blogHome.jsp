@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -74,15 +76,11 @@ ddsmoothmenu.init({
     <div id="templatemo_slider"><span class="sliderframe"></span>
     	 <div class="slider-wrapper theme-orman">
             <div id="slider" class="nivoSlider">
-            	<img src="${pageContext.request.contextPath}/images/slider/01.jpg" alt="slider image 2" title="#htmlcaption" />
-                <img src="${pageContext.request.contextPath}/images/slider/02.jpg" alt="slider image 2" />
-                <a  href="http://www.cssmoban.com/">
-                	<img src="${pageContext.request.contextPath}/images/slider/03.jpg" alt="slider image 2" title="This is an example of a caption." />
-                </a>
-                <img src="${pageContext.request.contextPath}/images/slider/04.jpg" alt="slider image 4" />
-            </div>
-            <div id="htmlcaption" class="nivo-html-caption">
-                <strong>This</strong> is an example of a HTML caption with <a href="#">a link</a>.
+            	<c:forEach items="${photoLastGroupList }" var="photo" varStatus="row">
+                    <a  href="">
+                	    <img src="${pageContext.request.contextPath}${photo.imgPath}" alt="slider image 2" title="${photo.title}" style="width: 100%;"/>
+                    </a>
+                </c:forEach>
             </div>
         </div> 
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.6.1.min.js"></script>
@@ -199,7 +197,7 @@ ddsmoothmenu.init({
 <div id="templatemo_bottom_wrapper">
 	<div id="templatemo_bottom">
     	
-        <div class="col col_3">
+        <div class="col">
             <h4>Photo Gallery</h4>
             <ul class="nobullet footer_gallery">
                 <li><a href="${pageContext.request.contextPath}/images/portfolio/02.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_02.png" alt="image 2" /></a></li>
@@ -212,29 +210,7 @@ ddsmoothmenu.init({
             <div class="clear"></div>
             <a href="portfolio.html" class="more">View all</a>
         </div>
-    	
-        <div class="col col_3">
-        	<h4>Twitter</h4>
-      		<ul class="nobullet twitter">
-                <li><a href="#">@网站模板</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
-                <li>Suspendisse enean <a href="#">#FREE</a> website template, mi lacus gravida nisi, vitae commodo orci nisi non nulla.</li>
-                <li>Sed non varius lorem, in sollicitudin lectus. Cras vel urna a urna gravida consequat. Curabitur non risus dui. <a  href="#">#</a></li>
-                <li><a href="#" title="" class="rower"  target="_blank"></a></li>
-            </ul>
-        </div>
-        
-        <div class="col col_3 no_mr">
-        	<h4>Follow Us</h4>
-            <ul class="nobullet social">
-            	<li><a  href="#/templatemo" class="facebook">Facebook</a></li>
-                <li><a href="#" class="twitter">Twitter</a></li>
-                <li><a href="#" class="youtube">Youtube</a></li>
-                <li><a href="#" class="google">Google+</a></li>
-                <li><a href="#" class="vimeo">Vimeo</a></li>
-                <li><a href="#" class="skype">Skype</a></li>
-            </ul>
-        </div>
-        
+                
         <div class="clear"></div>
     </div> <!-- END of bottom -->
     

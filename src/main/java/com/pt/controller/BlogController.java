@@ -25,6 +25,8 @@ public class BlogController {
 	@RequestMapping(value = "/blogHome")
 	public ModelAndView blogHome(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("photoLastGroupList", photoService.getMyPhotoLastGroupLst());
 		return mv;
 	}
 	

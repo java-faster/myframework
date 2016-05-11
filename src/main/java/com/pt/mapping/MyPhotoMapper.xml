@@ -182,5 +182,12 @@
        group by group_name
   </select>
   
-  
+  <select id="getMyPhotoLastGroupLst" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_photo
+    where group_name = 
+    (select group_name from my_photo order by add_time desc limit 1)
+  </select>
+
 </mapper>

@@ -189,7 +189,7 @@ ddsmoothmenu.init({
 <div id="templatemo_bottom_wrapper">
 	<div id="templatemo_bottom">
     	
-        <div class="col col_3">
+        <div class="col">
             <h4>Photo Gallery</h4>
             <ul class="nobullet footer_gallery">
                 <li><a href="${pageContext.request.contextPath}/images/portfolio/02.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_02.png" alt="image 2" /></a></li>
@@ -201,28 +201,6 @@ ddsmoothmenu.init({
             </ul>
             <div class="clear"></div>
             <a href="portfolio.html" class="more">View all</a>
-        </div>
-    	
-        <div class="col col_3">
-        	<h4>Twitter</h4>
-      		<ul class="nobullet twitter">
-                <li><a href="#">@网站模板</a> Proin turpis nisi, placerat quis orci ac, tempor iaculis eros.</li>
-                <li>Suspendisse enean <a href="#">#FREE</a> website template, mi lacus gravida nisi, vitae commodo orci nisi non nulla.</li>
-                <li>Sed non varius lorem, in sollicitudin lectus. Cras vel urna a urna gravida consequat. Curabitur non risus dui. <a  href="#">#</a></li>
-                <li><a href="#" title="" class="rower"  target="_blank"></a></li>
-            </ul>
-        </div>
-        
-        <div class="col col_3 no_mr">
-        	<h4>Follow Us</h4>
-            <ul class="nobullet social">
-            	<li><a  href="#/templatemo" class="facebook">Facebook</a></li>
-                <li><a href="#" class="twitter">Twitter</a></li>
-                <li><a href="#" class="youtube">Youtube</a></li>
-                <li><a href="#" class="google">Google+</a></li>
-                <li><a href="#" class="vimeo">Vimeo</a></li>
-                <li><a href="#" class="skype">Skype</a></li>
-            </ul>
         </div>
         
         <div class="clear"></div>

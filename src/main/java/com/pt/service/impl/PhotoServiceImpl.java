@@ -31,5 +31,11 @@ public class PhotoServiceImpl implements IPhotoService {
 		return myPhotoMapper.getMyPhotoGroupAllLst();
 	}
 
+	@Override
+	public List<MyPhoto> getMyPhotoLastGroupLst() {
+		// TODO Auto-generated method stub
+		return myPhotoMapper.getMyPhotoLastGroupLst();
+	}
+
 	
 }
