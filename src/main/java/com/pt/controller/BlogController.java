@@ -1,12 +1,17 @@
 package com.pt.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.entity.MyPhoto;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
 import com.pt.service.IPhotoService;
@@ -96,5 +101,11 @@ public class BlogController {
 	public ModelAndView contact(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		return mv;
+	}
+	
+	@RequestMapping(value = "/photoItem")
+	@ResponseBody
+	public List<MyPhoto> photoItem(HttpServletRequest request){
+		return photoService.getPhotoGroupAllList();
 	}
 }

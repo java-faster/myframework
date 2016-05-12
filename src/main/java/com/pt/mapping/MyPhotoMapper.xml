@@ -180,6 +180,7 @@
     	group_name
     from my_photo
        group by group_name
+       order by add_time desc
   </select>
   
   <select id="getMyPhotoLastGroupLst" resultMap="BaseResultMap">

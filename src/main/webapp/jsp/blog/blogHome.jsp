@@ -39,7 +39,25 @@ ddsmoothmenu.init({
 </script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slimbox2.css" type="text/css" media="screen" /> 
-<script type="text/JavaScript" src="${pageContext.request.contextPath}/js/slimbox2.js"></script> 
+<script type="text/JavaScript" src="${pageContext.request.contextPath}/js/slimbox2.js"></script>
+
+<script type="text/javascript"> 
+$.ajax({
+        url: "${pageContext.request.contextPath}/blog/photoItem",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        async: true,
+        success: function(data) {
+        	for(var i=0;i<data.length;i++){
+        		$("#photomenu").append("<li><a href='#'>"+ data[i].groupName +"</a></li>");
+        	}
+        },
+        error: function(msg) {
+        	alert("错误提示",msg);
+        }
+   });
+</script>
 
 </head>
 <body id="home">
@@ -52,12 +70,7 @@ ddsmoothmenu.init({
                 <li><a href="${pageContext.request.contextPath}/blog/blogHome" class="selected">主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  >日志</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4">相册</a>
-                    <ul>
-                        <li><a href="#">2016-01-05</a></li>
-                        <li><a href="#">2016-01-04</a></li>
-                        <li><a href="#">2016-01-03</a></li>
-                        <li><a href="#">2016-01-02</a></li>
-                        <li><a href="#">2016-01-01</a></li>
+                    <ul id="photomenu">
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
@@ -78,7 +91,7 @@ ddsmoothmenu.init({
             <div id="slider" class="nivoSlider">
             	<c:forEach items="${photoLastGroupList }" var="photo" varStatus="row">
                     <a  href="">
-                	    <img src="${pageContext.request.contextPath}${photo.imgPath}" alt="slider image 2" title="${photo.title}" style="width: 100%;"/>
+                	    <img src="${pageContext.request.contextPath}${photo.imgPath}" alt="slider image" title="${photo.title}"/>
                     </a>
                 </c:forEach>
             </div>
@@ -89,58 +102,21 @@ ddsmoothmenu.init({
         $(window).load(function() {
             $('#slider').nivoSlider({
 				controlNav:false,
-   			 directionNavHide: false
+   			    directionNavHide: false,
+   			    randomStart:true
 			});
         });
         </script>
     </div><!-- END of templatemo_slider -->
     
     <div id="templatemo_twitter">
-    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu nulla vel lorem volutpat tincidunt. Cras congue risus id nibh.
+    	欢迎来到葛宏斌的家园。。。
     </div> <!-- END of twitter -->
-    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >Website Template</a></div>
+    
     <div id="templatemo_main">
     
     	<div id="templatemo_content" class="left">
-        
-            <h2>Why Choose Us?</h2>
             
-            <div class="col col_2">
-                <img src="${pageContext.request.contextPath}/images/album.png" alt="image 1" class="img_fl" />
-              	<div class="col_w216 right">
-                <h5>Superior Teamwork</h5>
-                Credits go to <a  href="http://www.dezinerfolio.com/2008/08/28/on-stage-free-vector-psd-icon-set">dezinerfolio.com</a>, <a  href="#">dev7studios.com</a> and <a  href="#">wpzoom.com</a> for icons used in this template. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris semper libero a libero dignissim eu posuere nulla adipiscing.
-                </div>
-            </div>
-            
-            <div class="col col_2 no_mr">
-                <img src="${pageContext.request.contextPath}/images/chart-pie.png" alt="image 2" class="img_fl" />
-              	<div class="col_w216 right">
-                <h5>Effective Marketing</h5>
-                Mauris quis elit nec ante vulputate pellentesque. Suspendisse non arcu tortor, a vulputate augue. Donec nec odio ante, ac pharetra mauris. Duis feugiat elementum mi. Aenean pharetra condimentum sapien, sit amet vehicula nunc ultrices.
-                </div>
-            </div>
-            
-            <div class="clear"></div>
-            
-            <div class="col col_2">
-                <img src="${pageContext.request.contextPath}/images/podcast.png" alt="image 3" class="img_fl" />
-              	<div class="col_w216 right">
-                	<h5>Praesent augue urna</h5>
-                      Nunc luctus vehicula sapien ut ultrices. Sed aliquet tincidunt lorem, imperdiet fringilla felis facilisis sed. Integer libero arcu, rhoncus in facilisis vel, sollicitudin aliquet nisi. 
-                    Donec non lectus urna, sed ornare magna quam molestie. 
-                </div>
-            </div>
-            
-            <div class="col col_2 no_mr">
-                <img src="${pageContext.request.contextPath}/images/print.png" alt="image 4" class="img_fl" />
-              	<div class="col_w216 right">
-                    <h5>Mauris sem tortor</h5>
-                      Nullam justo nisl, feugiat non tempor a, luctus imperdiet magna. Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est, sit amet auctor metus neque ut nisl. Pellentesque elementum posuere mauris vitae dictum.
-                </div>
-            </div>
-            
-            <div class="clear"></div>
             <hr />
             
             <div class="post-item last_post">
@@ -166,7 +142,7 @@ ddsmoothmenu.init({
 		<div id="templatemo_sidebar" class="right">
 			
 			<div class="sidebar_section">
-                <h2>Services</h2>
+                <h2>留言</h2>
                 <img src="${pageContext.request.contextPath}/images/templatemo_image_01.jpg" alt="services" class="img_nom img_border" />
                 <p><em>Ut non nibh vel leo dapibus gravida et at dolor. Nullam non turpis eros, non euismod velit. </em></p>
                 <ul class="list_bullet">
@@ -178,12 +154,8 @@ ddsmoothmenu.init({
                 </ul>
                 <a href="#" class="more">More</a>
 			</div>
-            <div class="testimonial">
-            	<p class="testimonial_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam turpis enim, feugiat nec euismod et, mattis a ipsum. Aliquam erat volutpat. </p>
-                <p><strong>John</strong> - <a href="#">templatemo.com</a></p>
-            </div>
             <div class="sidebar_section">
-            	<h2>About</h2>
+            	<h2>关于我</h2>
                 <p>Pellentesque elementum posuere mauris vitae dictum. Cras enim sem, molestie vel tempor eu, laoreet dapibus purus. Mauris pharetra tristique imperdiet felis, eu vulputate ipsum. Mauris euismod viverra arcu.</p>
                 <a href="#" class="more">More</a>
             </div>
