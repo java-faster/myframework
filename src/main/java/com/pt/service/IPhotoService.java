@@ -7,5 +7,5 @@ import com.pt.entity.MyPhoto;
 public interface IPhotoService {
 	public List<MyPhoto> getPhotoGroupList(int stanum, int offset);
 	public List<MyPhoto> getPhotoGroupAllList();
-	
+	public List<MyPhoto> getMyPhotoLastGroupLst();
 }

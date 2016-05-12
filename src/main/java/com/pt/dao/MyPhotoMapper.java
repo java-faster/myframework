@@ -45,4 +45,6 @@ public interface MyPhotoMapper {
 	List<MyPhoto> getPhotoGroupList(HashMap map);
 
 	List<MyPhoto> getMyPhotoGroupAllLst();
+	
+	List<MyPhoto> getMyPhotoLastGroupLst();
 }
