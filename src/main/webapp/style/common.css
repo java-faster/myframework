@@ -1,0 +1,33 @@
+html,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,big,cite,del,em,img,ins,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,tbody,tfoot,tr,th,td{margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;}
+ol, ul{list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content:none;}
+:focus {outline:0;}
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+table {border-collapse:collapse;border-spacing:0;}
+label{cursor:pointer}
+input[type="button"]{cursor:pointer}
+button{cursor:pointer}
+strong{font-weight:normal;}
+em{font-style:normal}
+a{text-decoration:none;color:#333}
+a:hover{text-decoration:underline;}
+
+.cls{zoom:1}
+.cls:after{content:"";clear:both;display:block;height:0;line-height:0;font-size:0;}
+.left{float:left}.right{float:right}.floatNone{float:none!important}
+.alt{text-indent:-99999px;display:block}
+.ico{background:url("imgs/common.png") no-repeat left top;line-height:0;font-size:0;}
+.imgbug{line-height:0;font-size:0;}
+.clear{clear:both;display:block;height:0;line-height:0;font-size:0;}
+.imgbug{line-height:0;font-size:0;}
+.hidden{display:none;}
+.piece{display:block;line-height:0;font-size:0;}
+.mainWrap{width:1000px;margin:0 auto;}
+.more{text-align:right;}
+
+.GamePic{margin:120px auto;width:700px;background:#fff;padding:10px 0;}
+	.GamePic li{float:left;margin:0 10px;}
+	.GamePic a{float:left;padding:1px;border:1px solid #ccc}
