@@ -49,18 +49,14 @@ ddsmoothmenu.init({
 <body id="subpage">
 
 <div id="templatemo_wrapper">
+
 	<div id="templatemo_header">
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/blog/blogHome" >主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  >日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" >相册</a>
-                    <ul>
-                        <li><a href="#">2016-01-05</a></li>
-                        <li><a href="#">2016-01-04</a></li>
-                        <li><a href="#">2016-01-03</a></li>
-                        <li><a href="#">2016-01-02</a></li>
-                        <li><a href="#">2016-01-01</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4">相册</a>
+                    <ul id="photomenu">
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
@@ -70,7 +66,7 @@ ddsmoothmenu.init({
                         <li><a href="#">我的简历</a></li>
                   </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/blog/contact" class="selected">联系我</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/contact"  class="selected">联系我</a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of templatemo_menu -->
@@ -85,22 +81,22 @@ ddsmoothmenu.init({
     	<div class="col_32 left">
             <div id="contact_form">
                 <h2>发送信息</h2>
-                <form method="post" name="contact" action="#">
+                <form method="post" name="contact" action="${pageContext.request.contextPath}/blog/sendMsg">
                 
                 <div class="col_3 left">                
                     <label for="fullname">姓名:</label> 
-                    <input name="fullname" type="text" class="input_field" id="fullname" maxlength="30" />
+                    <input name="name" type="text" class="input_field" id="fullname" maxlength="30" />
                     
                   	<label for="email">邮箱:</label> 
                	  <input name="email" type="text" class="input_field" id="email" maxlength="30" />
                     
                     <label for="subject">标题:</label> 
-                    <input name="subject" type="text" class="input_field" id="subject" maxlength="30" />
+                    <input name="title" type="text" class="input_field" id="subject" maxlength="30" />
 				</div>
                 
                 <div class="col_3 right">
                     <label for="message">信息:</label> 
-                    <textarea id="message" name="message" rows="0" cols="0" class="required"></textarea>
+                    <textarea id="content" name="message" rows="0" cols="0" class="required"></textarea>
 				</div>
                 
                 <div class="clear"></div>
@@ -135,17 +131,11 @@ ddsmoothmenu.init({
 	<div id="templatemo_bottom">
     	
         <div class="col ">
-            <h4>Photo Gallery</h4>
-            <ul class="nobullet footer_gallery">
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/02.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_02.png" alt="image 2" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_03.png" alt="image 3" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/04.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_04.png" alt="image 4" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/05.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_05.png" alt="image 5" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_06.png" alt="image 6" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/01.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_07.png" alt="image 7" /></a></li>
+            <h4>照片墙</h4>
+            <ul id="imgfoot" class="nobullet footer_gallery">
             </ul>
             <div class="clear"></div>
-            <a href="portfolio.html" class="more">View all</a>
+            <a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" class="more">全部</a>
         </div>
         
         <div class="clear"></div>
@@ -258,5 +248,38 @@ ddsmoothmenu.init({
     }
     
     initMap();//创建和初始化地图
+</script>
+<script type="text/javascript"> 
+$.ajax({
+        url: "${pageContext.request.contextPath}/blog/photoItem",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        async: true,
+        success: function(data) {
+        	for(var i=0;i<data.length;i++){
+        		$("#photomenu").append("<li><a href='${pageContext.request.contextPath}/blog/photoHome?group="+data[i].groupName+"'>"+ data[i].groupName +"</a></li>");
+        	}
+        },
+        error: function(msg) {
+        	alert("错误提示",msg);
+        }
+   });
+   
+$.ajax({
+    url: "${pageContext.request.contextPath}/blog/photoFoot",
+    type: "GET",
+    dataType: "json",
+    data: "",
+    async: false,
+    success: function(data) {
+    	for(var i=0;i<data.length;i++){
+    		$("#imgfoot").append("<li><a href='${pageContext.request.contextPath}"+ data[i].imgPath +"' rel='lightbox[gallery]'><img src='${pageContext.request.contextPath}"+ data[i].imgPath +"' alt='"+data[i].title+"' /></a></li>");
+    	}
+    },
+    error: function(msg) {
+    	alert("错误提示",msg);
+    }
+});
 </script>
 </html>

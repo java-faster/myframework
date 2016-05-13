@@ -34,7 +34,7 @@ ddsmoothmenu.init({
 	classname: 'ddsmoothmenu', //class added to menu's outer DIV
 	//customtheme: ["#1c5a80", "#18374a"],
 	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-})
+});
 
 </script>
 
@@ -45,19 +45,13 @@ ddsmoothmenu.init({
 <body id="subpage">
 
 <div id="templatemo_wrapper">
-
 	<div id="templatemo_header">
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/blog/blogHome" >主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/blogHome">主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=1&pageSize=3"  >日志</a></li>
-                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" class="selected">相册</a>
-                    <ul>
-                        <li><a href="#">2016-01-05</a></li>
-                        <li><a href="#">2016-01-04</a></li>
-                        <li><a href="#">2016-01-03</a></li>
-                        <li><a href="#">2016-01-02</a></li>
-                        <li><a href="#">2016-01-01</a></li>
+                <li><a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4"  class="selected">相册</a>
+                    <ul id="photomenu">
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
@@ -85,7 +79,7 @@ ddsmoothmenu.init({
 	    	<div class="col col_2 <c:if test='${row.index % 2 ne 0}'>no_mr</c:if>">
 	        	<img src="${pageContext.request.contextPath}${group.imgPath}" alt="image" style="width: 100%;"/>	
 	            <p class="image_caption">${group.groupName}
-	            <a href="#" class="more">Visit</a>
+	            <a href="${pageContext.request.contextPath}/blog/photoHome?group=${group.groupName}" class="more">详细</a>
 	            </p>
 	        </div>
 	        <c:if test='${row.index % 2 ne 0}'>
@@ -117,17 +111,11 @@ ddsmoothmenu.init({
 	<div id="templatemo_bottom">
     	
         <div class="col ">
-            <h4>Photo Gallery</h4>
-            <ul class="nobullet footer_gallery">
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/02.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_02.png" alt="image 2" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_03.png" alt="image 3" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/04.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_04.png" alt="image 4" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/05.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_05.png" alt="image 5" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_06.png" alt="image 6" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/01.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_07.png" alt="image 7" /></a></li>
+            <h4>照片墙</h4>
+            <ul id="imgfoot" class="nobullet footer_gallery">
             </ul>
             <div class="clear"></div>
-            <a href="portfolio.html" class="more">View all</a>
+            <a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" class="more">全部</a>
         </div>
         
         <div class="clear"></div>
@@ -144,4 +132,37 @@ ddsmoothmenu.init({
 
 </body>
 <script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
+<script type="text/javascript"> 
+$.ajax({
+        url: "${pageContext.request.contextPath}/blog/photoItem",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        async: true,
+        success: function(data) {
+        	for(var i=0;i<data.length;i++){
+        		$("#photomenu").append("<li><a href='${pageContext.request.contextPath}/blog/photoHome?group="+data[i].groupName+"'>"+ data[i].groupName +"</a></li>");
+        	}
+        },
+        error: function(msg) {
+        	alert("错误提示",msg);
+        }
+   });
+   
+$.ajax({
+    url: "${pageContext.request.contextPath}/blog/photoFoot",
+    type: "GET",
+    dataType: "json",
+    data: "",
+    async: false,
+    success: function(data) {
+    	for(var i=0;i<data.length;i++){
+    		$("#imgfoot").append("<li><a href='${pageContext.request.contextPath}"+ data[i].imgPath +"' rel='lightbox[gallery]'><img src='${pageContext.request.contextPath}"+ data[i].imgPath +"' alt='"+data[i].title+"' /></a></li>");
+    	}
+    },
+    error: function(msg) {
+    	alert("错误提示",msg);
+    }
+});
+</script>
 </html>

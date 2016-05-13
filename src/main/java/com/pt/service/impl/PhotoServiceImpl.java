@@ -37,5 +37,20 @@ public class PhotoServiceImpl implements IPhotoService {
 		return myPhotoMapper.getMyPhotoLastGroupLst();
 	}
 
+	@Override
+	public List<MyPhoto> getPhotoAllListByGroup(String group) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("groupName", group);
+		return myPhotoMapper.getPhotoListByGroup(map);
+	}
+
+	@Override
+	public List<MyPhoto> getPhotoAllList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("stanum", 0);
+		map.put("offset", 8);
+		return myPhotoMapper.getPhotoList(map);
+	}
+
 	
 }

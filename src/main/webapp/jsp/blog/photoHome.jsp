@@ -22,16 +22,41 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slimbox2.css" type="text/css" media="screen" /> 
 <script type="text/JavaScript" src="${pageContext.request.contextPath}/js/slimbox2.js"></script> 
+<script type="text/javascript"> 
+var picSrc="${pageContext.request.contextPath}/GamePic/";
+var pics=new Array();
 
-</head>
-</body>
-<script type="text/javascript">
-var picSrc="GamePic/"
-var pics={p1:{s:picSrc+"1s.jpg",b:picSrc+"1.jpg"},p2:{s:picSrc+"2s.jpg",b:"http://hiphotos.baidu.com/0011fx/pic/item/68d41bfd2e7980b0fd037fa9.jpg"},p3:{s:picSrc+"3s.jpg",b:picSrc+"3.jpg"},p4:{s:picSrc+"4s.jpg",b:picSrc+"4.jpg"},p5:{s:picSrc+"5s.jpg",b:picSrc+"5.jpg"},p6:{s:picSrc+"3s.jpg",b:picSrc+"3.jpg"},p7:{s:picSrc+"4s.jpg",b:picSrc+"4.jpg"},p8:{s:picSrc+"5s.jpg",b:picSrc+"5.jpg"},p9:{s:picSrc+"1s.jpg",b:picSrc+"1.jpg"},p10:{s:picSrc+"2s.jpg",b:"http://hiphotos.baidu.com/0011fx/pic/item/68d41bfd2e7980b0fd037fa9.jpg"},p11:{s:picSrc+"3s.jpg",b:picSrc+"3.jpg"},p12:{s:picSrc+"4s.jpg",b:picSrc+"4.jpg"},p13:{s:picSrc+"5s.jpg",b:picSrc+"5.jpg"},p14:{s:picSrc+"3s.jpg",b:picSrc+"3.jpg"},p15:{s:picSrc+"4s.jpg",b:picSrc+"4.jpg"},p16:{s:picSrc+"5s.jpg",b:picSrc+"5.jpg"}}
+$.ajax({
+        url: "${pageContext.request.contextPath}/blog/photo?group=${group}",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        async: true,
+        success: function(data) {
+        	
+        	for(var i=0;i<data.length;i++){
+               	var item = new Object();
+            	item.s = "${pageContext.request.contextPath}" + data[i].imgPath;
+            	item.b = "${pageContext.request.contextPath}" + data[i].imgPath;
+            	pics[i] = item;
+        	}
+        	
+        	document.getElementById("btn").click();
+        },
+        error: function(msg) {
+        	alert("错误提示",msg);
+        }
+   });
+   
 function photo(e){
 	e.style.display="none";
 	var newPhotoShow=new picShow(pics);
 	newPhotoShow.photoBtn=e;
 }
 </script>
+
+</head>
+<body>
+<a id="btn" href="javascript:;" onclick="photo(this);" title="打开相册" style="display:none;">打开相册</a>
+</body>
 </html>

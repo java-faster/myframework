@@ -41,24 +41,6 @@ ddsmoothmenu.init({
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slimbox2.css" type="text/css" media="screen" /> 
 <script type="text/JavaScript" src="${pageContext.request.contextPath}/js/slimbox2.js"></script>
 
-<script type="text/javascript"> 
-$.ajax({
-        url: "${pageContext.request.contextPath}/blog/photoItem",
-        type: "GET",
-        dataType: "json",
-        data: "",
-        async: true,
-        success: function(data) {
-        	for(var i=0;i<data.length;i++){
-        		$("#photomenu").append("<li><a href='#'>"+ data[i].groupName +"</a></li>");
-        	}
-        },
-        error: function(msg) {
-        	alert("错误提示",msg);
-        }
-   });
-</script>
-
 </head>
 <body id="home">
 
@@ -118,23 +100,25 @@ $.ajax({
     	<div id="templatemo_content" class="left">
             
             <hr />
-            
-            <div class="post-item last_post">
-            	<div class="post-meta">
-                	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
-                    <div class="post-meta-content">
-                    	<h2>Nullam Non Turpis Eros Non Euismod</h2>
-                        Posted by <span><a href="#">Admin</a></span>
-                        | <span><a href="#">18 January 2084</a></span>
-                        in <span><a href="#">Free</a>, <a href="#">Templates</a></span>
-                    </div>
-                    <span class="post_comment">10</span>
-                    <div class="clear"></div>
-				</div>
-                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}/images/blog/01.jpg" alt="Post Image 2" />
-                <p>Donec non lectus urna, sed ornare magna. Morbi fringilla lorem at nulla porttitor et semper quam molestie. Nullam justo nisl, feugiat non tempor a, luctus imperdiet magna. Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est, sit amet auctor metus neque ut nisl. Validate <a href="#" ><strong>XHTML</strong></a> &amp; <a href="#" ><strong>CSS</strong></a>.</p>
-                <a class="more" href="fullpost.html">More</a>
-                </div>
+            <c:forEach items="${bloglist }" var="blog" varStatus="row">
+	            <div class="post-item last_post">
+	            	<div class="post-meta">
+	                	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
+	                    <div class="post-meta-content">
+	                    	<h2>${blog.title}</h2>
+	                        Posted by <span><a href="#">葛宏斌</a></span>
+	                		| <span><a href="#"><fmt:formatDate value="${blog.addTime}" pattern="yyyy-MM-dd"/></a></span>
+	                        in <span><a href="#">${blog.location}</a></span>
+	                    </div>
+	                    <span class="post_comment">${blog.commentCount}</span>
+	                    <div class="clear"></div>
+					</div>
+	                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
+	                <p>${blog.description}</p>
+	                <a class="more" href="fullpost.html">详细</a>
+	            </div>
+            </c:forEach>
+
             </div>
 		
         </div> <!-- END of content -->
@@ -170,17 +154,10 @@ $.ajax({
 	<div id="templatemo_bottom">
     	
         <div class="col">
-            <h4>Photo Gallery</h4>
-            <ul class="nobullet footer_gallery">
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/02.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_02.png" alt="image 2" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_03.png" alt="image 3" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/04.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_04.png" alt="image 4" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/05.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_05.png" alt="image 5" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/03.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_06.png" alt="image 6" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/images/portfolio/01.jpg" rel="lightbox[gallery]"><img src="${pageContext.request.contextPath}/images/templatemo_image_07.png" alt="image 7" /></a></li>
-            </ul>
+            <h4>照片墙</h4>
+            <ul id="imgfoot" class="nobullet footer_gallery"></ul>
             <div class="clear"></div>
-            <a href="portfolio.html" class="more">View all</a>
+            <a href="${pageContext.request.contextPath}/blog/photogroup?pageNo=1&pageSize=4" class="more">全部</a>
         </div>
                 
         <div class="clear"></div>
@@ -197,4 +174,40 @@ $.ajax({
 
 </body>
 <script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
+<script type="text/javascript"> 
+$.ajax({
+        url: "${pageContext.request.contextPath}/blog/photoItem",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        async: true,
+        success: function(data) {
+        	for(var i=0;i<data.length;i++){
+        		$("#photomenu").append("<li><a href='${pageContext.request.contextPath}/blog/photoHome?group="+data[i].groupName+"'>"+ data[i].groupName +"</a></li>");
+        	}
+        },
+        error: function(msg) {
+        	alert("错误提示",msg);
+        }
+   });
+   
+$.ajax({
+    url: "${pageContext.request.contextPath}/blog/photoFoot",
+    type: "GET",
+    dataType: "json",
+    data: "",
+    async: false,
+    success: function(data) {
+    	for(var i=0;i<data.length;i++){
+    		$("#imgfoot").append("<li><a href='${pageContext.request.contextPath}"+ data[i].imgPath +"' rel='lightbox[gallery]'><img src='${pageContext.request.contextPath}"+ data[i].imgPath +"' alt='"+data[i].title+"' /></a></li>");
+    	}
+    },
+    error: function(msg) {
+    	alert("错误提示",msg);
+    }
+});
+   
+
+</script>
+
 </html>

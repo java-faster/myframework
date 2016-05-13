@@ -335,7 +335,7 @@ picShow.prototype.iStart=function(Img){
 	}
 	main.curImg.innerHTML="<img id='"+main.name+"CurImg' src='"+Img.src+"' title='"+Img.title+"' style='width:"+w+"px;height:"+h+"px;' />"
 	main.curImg.style.left=String(50+(cw-main.curImg.offsetWidth)/2)+"px";
-	main.curImg.style.top="50px";
+	main.curImg.style.top=String((ch-main.curImg.offsetHeight)/2)+"px";
 	div(main.curImg).Alpha(0,100);
 	div(main.curImg).MouseFollow();
 }
@@ -423,6 +423,7 @@ picShow.prototype.imgControl=function(){
 		div(main.name+"ScrollWrap").Scroll(main.ms,"left");
 	});
 	main.CloseBtn.onclick=function(){
-		document.body.removeChild(main.Fhtml);document.body.removeChild(main.Fbg);main.photoBtn.style.display="block";
-	}
+		//document.body.removeChild(main.Fhtml);document.body.removeChild(main.Fbg);main.photoBtn.style.display="block";
+		history.back(-1);
+	};
 }

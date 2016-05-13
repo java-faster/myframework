@@ -128,7 +128,7 @@ ul.list_bullet li a:hover { color: #555 }
 }
 .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 ul.footer_gallery li { display: block; float: left; margin: 0 10px 10px 0 }
-ul.footer_gallery li img { border: 1px solid #777; padding: 4px; background: #333 }
+ul.footer_gallery li img { border: 1px solid #777; padding: 4px; background: #333; width: 100px;height: 100px; }
 
 #site_title { float: left; }
 #site_title a { display: block; font-size: 12px; font-family: Georgia, "Times New Roman", Times, serif; width: 200px; height: 60px; color: #acacac; text-indent: -10000px; background:  url(images/templatemo_logo.png) no-repeat top left }

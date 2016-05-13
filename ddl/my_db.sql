@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
-Source Server Version : 50626
+Source Server         : ddpress
+Source Server Version : 50711
 Source Host           : localhost:3306
 Source Database       : my_db
 
 Target Server Type    : MYSQL
-Target Server Version : 50626
+Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-05-09 22:57:08
+Date: 2016-05-13 15:38:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,24 +82,47 @@ CREATE TABLE `my_comment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for my_msg
+-- ----------------------------
+DROP TABLE IF EXISTS `my_msg`;
+CREATE TABLE `my_msg` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of my_msg
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for my_photo
 -- ----------------------------
 DROP TABLE IF EXISTS `my_photo`;
 CREATE TABLE `my_photo` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `group` varchar(20) DEFAULT NULL,
+  `group_name` varchar(20) DEFAULT NULL,
   `img_path` varchar(255) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
   `upt_time` datetime DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of my_photo
 -- ----------------------------
+INSERT INTO `my_photo` VALUES ('1', '图一', '图一', '2016-05-11', '/images/portfolio/01.jpg', '2016-05-11 13:14:31', '2016-05-11 13:14:34', '1');
+INSERT INTO `my_photo` VALUES ('2', '图二', '图二', '2016-04-11', '/images/portfolio/02.jpg', '2016-04-11 13:14:31', '2016-04-11 13:14:34', '1');
+INSERT INTO `my_photo` VALUES ('3', '图三', '图三', '2016-03-11', '/images/portfolio/03.jpg', '2016-03-01 13:14:31', '2016-03-01 13:14:34', '1');
+INSERT INTO `my_photo` VALUES ('4', '图四', '图四', '2016-02-11', '/images/portfolio/04.jpg', '2016-02-01 13:14:31', '2016-02-01 13:14:34', '1');
 
 -- ----------------------------
 -- Table structure for truth_or_dare
@@ -184,3 +207,20 @@ CREATE TABLE `user_info` (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_t
+-- ----------------------------
+DROP TABLE IF EXISTS `user_t`;
+CREATE TABLE `user_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `age` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_t
+-- ----------------------------
+INSERT INTO `user_t` VALUES ('1', '测试', 'sfasgfaf', '24');
