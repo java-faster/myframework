@@ -31,5 +31,11 @@ public class BlogServiceImpl implements IBlogService {
 		return myBlogMapper.getMyBlogAllLst();
 	}
 
+	@Override
+	public MyBlog getBlogDetail(Long id) {
+		// TODO Auto-generated method stub
+		return myBlogMapper.selectByPrimaryKey(id);
+	}
+
 	
 }

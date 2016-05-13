@@ -115,7 +115,7 @@ ddsmoothmenu.init({
 					</div>
 	                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
 	                <p>${blog.description}</p>
-	                <a class="more" href="fullpost.html">详细</a>
+	                <a class="more" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}">详细</a>
 	            </div>
             </c:forEach>
 
@@ -140,8 +140,8 @@ ddsmoothmenu.init({
 			</div>
             <div class="sidebar_section">
             	<h2>关于我</h2>
-                <p>Pellentesque elementum posuere mauris vitae dictum. Cras enim sem, molestie vel tempor eu, laoreet dapibus purus. Mauris pharetra tristique imperdiet felis, eu vulputate ipsum. Mauris euismod viverra arcu.</p>
-                <a href="#" class="more">More</a>
+                <p>此人屌炸天</p>
+                <a href="${pageContext.request.contextPath}/blog/about" class="more">更多</a>
             </div>
       </div>
         

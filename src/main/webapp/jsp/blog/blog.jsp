@@ -91,7 +91,7 @@ ddsmoothmenu.init({
 				</div>
                 <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
                 <p>${blog.description}</p>
-                <a class="more" href="fullpost.html">详细</a>
+                <a class="more" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}">详细</a>
 			</div>
 			</c:forEach>
             

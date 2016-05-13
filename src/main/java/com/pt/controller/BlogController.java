@@ -165,4 +165,19 @@ public class BlogController {
 		}
 		return "1";
 	}
+	
+	@RequestMapping(value = "/blogDetail")
+	public ModelAndView blogDetail(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		
+		String id = request.getParameter("id");
+		
+		if(!StringUtils.isNumberic(id)){
+			return mv;
+		}
+		
+		mv.addObject("blog",blogService.getBlogDetail(Long.valueOf(id)));
+		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
+		return mv;
+	}
 }

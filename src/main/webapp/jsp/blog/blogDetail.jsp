@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -67,8 +69,8 @@ ddsmoothmenu.init({
     </div> <!-- END of header -->
     
     <div id="templatemo_page_intro">
-    	<h1>Our Blog</h1>
-        <p>Vestibulum justo nunc, tristique sed tincidunt eu, adipiscing at ipsum. Maecenas suscipit urna at felis accumsan porttitor. Vivamus vel porta felis.</p>
+    	<h1>我的日志</h1>
+        <p>记录我的感悟，学习笔记，旅行日志，书评，以及各种琐事。。。</p>
     </div>
     
     
@@ -77,20 +79,19 @@ ddsmoothmenu.init({
             <div class="post-item">
             	<div class="post-meta">
                 	<img src="${pageContext.request.contextPath}/images/author.png" alt="post author image" />
-                    <div class="post-meta-content">
-                    	<h2>Nullam Non Turpis Eros Non Euismod</h2>
-                        Posted by <span><a href="#">Admin</a></span>
-                		| <span><a href="#">14 January 2084</a></span>
-                        in <span><a href="#">Free</a>, <a href="#">Templates</a></span>
+                	<div class="post-meta-content">
+                    	<h2>${blog.title}</h2>
+                        Posted by <span>葛宏斌</span>
+                		| <span><a href="#"><fmt:formatDate value="${blog.addTime}" pattern="yyyy-MM-dd"/></a></span>
+                        in <span><a href="#">${blog.location}</a></span>
                     </div>
-                    <span class="post_comment">10</span>
+                    <span class="post_comment">${blog.commentCount}</span>
                     <div class="clear"></div>
+
 				</div>
-                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}/images/blog/01.jpg" alt="Post Image" />
-                <p align="justify">Donec non lectus urna, sed ornare magna. Morbi fringilla lorem at nulla porttitor et semper quam molestie. Nullam justo nisl, feugiat non tempor a, luctus imperdiet magna. Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est, sit amet auctor metus neque ut nisl. Validate <a href="#" ><strong>XHTML</strong></a> &amp; <a href="#" ><strong>CSS</strong></a>.</p>
-                <p align="justify">Morbi venenatis augue sit amet ante facilisis feugiat sed in lectus. Vivamus imperdiet, ante a pretium vehicula, ante enim sodales mi, eu rutrum odio turpis eget arcu. Proin a elit nisl, id aliquam felis. Nunc ultrices iaculis quam, sed commodo erat tempus mollis. Duis ultricies nulla sed dolor egestas id.</p>
-                <p align="justify">Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipiscing elit. Etiam nec turpis bibendum massa dapibus dictum. Donec eu odio sapien. Donec tincidunt eleifend mauris, ac volutpat leo tincidunt a. Aenean vel vehicula augue. Vestibulum lectus sem, porttitor non molestie quis, pulvinar nec nulla. Maecenas id orci vitae lectus fermentum posuere. <a href="#">Phasellus</a> lacinia eleifend elit, eu mollis erat consectetur et. </p>
-                <p align="justify">Integer semper sollicitudin quam a ornare. Nam venenatis nibh ac sem faucibus et imperdiet magna laoreet. Sed at risus dui. Ut imperdiet libero at mauris vestibulum tempor. Vestibulum at lorem ac lectus rhoncus aliquet eget ac mauris. Proin nec nunc magna, eu blandit massa. Sed elementum nisi ut quam vehicula eu egestas nisi varius.</p>
+				<img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
+                <p align="justify">${blog.description}</p>
+                <p align="justify">${blog.content}</p>
           </div>
             <h3>Comments</h3>
             <ol class="comment_list">
@@ -206,18 +207,13 @@ ddsmoothmenu.init({
         </div> <!-- END of content -->
                 
 		<div id="templatemo_sidebar" class="right">
-			
+
 			<div class="sidebar_section sidebar_section_bg">
-                <h3>Categories</h3>
+                <h3>分类</h3>
                 <ul class="sidebar_link_list">
-                    <li><a href="#">Consectetur adipiscing</a></li>
-                    <li><a href="#">Nullam vulputate est</a></li>
-                    <li><a href="#">Duis porta velit</a></li>
-                    <li><a href="#">Pretium suscipit</a></li>
-                    <li><a href="#">Cras pulvinar eget lacus</a></li>
-                    <li><a href="#">Duis in libero est</a></li>
-                    <li><a href="#">Aenean tincidunt</a></li>
-                    <li><a href="#">Morbi tempus iaculis</a></li>
+                	<c:forEach items="${categoriesList }" var="categories" varStatus="row">
+                    	<li><a href="#">${categories.name }</a></li>
+                    </c:forEach>
                 </ul>
 			</div>
             

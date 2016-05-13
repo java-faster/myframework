@@ -112,7 +112,7 @@ function sendMsg(){
     <div id="templatemo_main">
     	<div class="col_32 left">
             <div id="contact_form">
-                <h2>发送信息</h2>
+                <h2>留言</h2>
                 <form method="post" name="contact" action="#">
                 
                 <div class="col_3 left">                
