@@ -20,7 +20,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	* @return 
 	*/ 
 	public static boolean isEmail(String str){ 
-		Pattern p=Pattern.compile("\\p{Alpha}\\w{2,15}[@][a-z0-9]{3,}[.]\\p{Lower}{2,}"); 
+		Pattern p=Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$"); 
 		return p.matcher(str).matches(); 
 	} 
 }

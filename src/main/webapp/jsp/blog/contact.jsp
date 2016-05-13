@@ -44,6 +44,38 @@ ddsmoothmenu.init({
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slimbox2.css" type="text/css" media="screen" /> 
 <script type="text/JavaScript" src="${pageContext.request.contextPath}/js/slimbox2.js"></script> 
+<script type="text/JavaScript">
+function sendMsg(){
+	var name = $("#name").val();
+	var title = $("#title").val();
+	var email = $("#email").val();
+	var content = $("#content").val();
+	
+	$.ajax({
+	    url: "${pageContext.request.contextPath}/blog/sendMsg",
+	    type: "POST",
+	    dataType: "text/html",
+	    data: {
+	    	name : name,
+	    	title : title,
+	    	email : email,
+	    	content : content
+	    },
+	    async: false,
+	    success: function(data) {
+	    	if(data == 0){
+	    		alert("发送错误");
+	    	}else{
+	    		alert("发送成功");
+	    	}
+	    	
+	    },
+	    error: function(msg) {
+	    	alert(msg);
+	    }
+	});
+}
+</script>
 
 </head>
 <body id="subpage">
@@ -81,26 +113,26 @@ ddsmoothmenu.init({
     	<div class="col_32 left">
             <div id="contact_form">
                 <h2>发送信息</h2>
-                <form method="post" name="contact" action="${pageContext.request.contextPath}/blog/sendMsg">
+                <form method="post" name="contact" action="#">
                 
                 <div class="col_3 left">                
                     <label for="fullname">姓名:</label> 
-                    <input name="name" type="text" class="input_field" id="fullname" maxlength="30" />
+                    <input id="name" name="name" type="text" class="input_field" maxlength="30" />
                     
                   	<label for="email">邮箱:</label> 
                	  <input name="email" type="text" class="input_field" id="email" maxlength="30" />
                     
                     <label for="subject">标题:</label> 
-                    <input name="title" type="text" class="input_field" id="subject" maxlength="30" />
+                    <input name="title" type="text" class="input_field" id="title" maxlength="30" />
 				</div>
                 
                 <div class="col_3 right">
                     <label for="message">信息:</label> 
-                    <textarea id="content" name="message" rows="0" cols="0" class="required"></textarea>
+                    <textarea id="content" name="content" rows="0" cols="0" class="required"></textarea>
 				</div>
                 
                 <div class="clear"></div>
-                 	<input type="submit" name="Submit" value="发送" class="submit_btn" />
+                 	<input type="button" name="Submit" value="发送" class="submit_btn" onclick="return sendMsg();"/>
                  
                 </form>
             </div>    
@@ -262,7 +294,7 @@ $.ajax({
         	}
         },
         error: function(msg) {
-        	alert("错误提示",msg);
+        	alert(msg);
         }
    });
    
@@ -278,7 +310,7 @@ $.ajax({
     	}
     },
     error: function(msg) {
-    	alert("错误提示",msg);
+    	alert(msg);
     }
 });
 </script>

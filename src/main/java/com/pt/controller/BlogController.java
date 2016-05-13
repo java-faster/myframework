@@ -139,6 +139,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/sendMsg",method = RequestMethod.POST)
+	@ResponseBody
 	public String sendMsg(@ModelAttribute("myMsg")MyMsg myMsg){
 		if(StringUtils.isBlank(myMsg.getEmail())){
 			return "0";
@@ -150,6 +151,9 @@ public class BlogController {
 			return "0";
 		}
 		if(StringUtils.isBlank(myMsg.getContent())){
+			return "0";
+		}
+		if(!StringUtils.isEmail(myMsg.getEmail())){
 			return "0";
 		}
 		
