@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-05-16 14:02:52
+Date: 2016-05-16 18:07:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -85,6 +85,36 @@ CREATE TABLE `my_comment` (
 -- Records of my_comment
 -- ----------------------------
 INSERT INTO `my_comment` VALUES ('1', '1', '很好', null, 'ptghb@163.com', '哈哈', '2016-05-16 11:37:43', '1', '谢谢', '2016-05-16 11:38:55');
+
+-- ----------------------------
+-- Table structure for my_exp
+-- ----------------------------
+DROP TABLE IF EXISTS `my_exp`;
+CREATE TABLE `my_exp` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `year` varchar(4) DEFAULT NULL,
+  `mmdd` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of my_exp
+-- ----------------------------
+INSERT INTO `my_exp` VALUES ('1', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2013', '0807');
+INSERT INTO `my_exp` VALUES ('2', '官方微博', '推出了HTML5 CSS3 官方微博', '2013', '0528');
+INSERT INTO `my_exp` VALUES ('3', 'HTML5 CSS3 发展历程 上线', '虽然功能还未健全，但是我们已迫不及待的让它去接受广大用户的火眼金睛', '2013', '0524');
+INSERT INTO `my_exp` VALUES ('4', '初期讨论', '在集体探讨下，发现目前的HTML5 CSS3 发展历程已经不能满足需求，集体讨论=，这时候，韩老师之前的设计稿被端上了会议桌。', '2013', '0508');
+INSERT INTO `my_exp` VALUES ('5', '灵感迸发', '某天晚上的凌晨三点一刻，预想建立这样一个功能的网站，专为网页设计师。', '2012', '0701');
+INSERT INTO `my_exp` VALUES ('6', 'HTML5 CSS3 发展历程 上线', '虽然功能还未健全，但是我们已迫不及待的让它去接受广大用户的火眼金睛', '2012', '0524');
+INSERT INTO `my_exp` VALUES ('7', '初见成效', '代码笔记第一版上线', '2012', '0301');
+INSERT INTO `my_exp` VALUES ('8', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
+INSERT INTO `my_exp` VALUES ('9', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
+INSERT INTO `my_exp` VALUES ('10', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
+INSERT INTO `my_exp` VALUES ('11', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
+INSERT INTO `my_exp` VALUES ('12', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
+INSERT INTO `my_exp` VALUES ('13', 'HTML5 CSS3 发展历程 发布', '随着用户的访问量增大,功能不能满足需求，我们进行了重大更新，对设计和功能都进行大幅度的升级,增加了原创，欣赏版块', '2011', '0807');
 
 -- ----------------------------
 -- Table structure for my_msg
