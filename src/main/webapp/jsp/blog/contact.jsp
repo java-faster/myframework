@@ -183,7 +183,6 @@ function sendMsg(){
 
 
 </body>
-<script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
 <script type="text/javascript">
     //创建和初始化地图函数：
     function initMap(){

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.entity.MyComment;
 import com.pt.entity.MyMsg;
 import com.pt.entity.MyPhoto;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
+import com.pt.service.ICommentService;
 import com.pt.service.IMsgService;
 import com.pt.service.IPhotoService;
 import com.pt.util.StringUtils;
@@ -32,40 +34,46 @@ public class BlogController {
 	private IPhotoService photoService;
 	@Resource
 	private IMsgService msgService;
+	@Resource
+	private ICommentService commentService;
 	
 	@RequestMapping(value = "/blogHome")
 	public ModelAndView blogHome(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("photoLastGroupList", photoService.getMyPhotoLastGroupLst());
-		mv.addObject("bloglist",blogService.getBlogList(0,1));
+		mv.addObject("bloglist",blogService.getBlogList(null,0,1));
 		return mv;
 	}
 	
 	@RequestMapping(value = "/blog")
-	public ModelAndView blog(HttpServletRequest request){
+	public ModelAndView blog(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		String pageNo = request.getParameter("pageNo");
 		String pageSize = request.getParameter("pageSize");
-		
-		if(!StringUtils.isNumberic(pageNo)||!StringUtils.isNumberic(pageSize)){
+		String type = request.getParameter("type");
+
+		if (!StringUtils.isNumberic(pageNo)
+				|| !StringUtils.isNumberic(pageSize)) {
 			return mv;
 		}
-		
-		Integer stanum = (Integer.valueOf(pageNo)-1) * Integer.valueOf(pageSize);
+
+		Integer stanum = (Integer.valueOf(pageNo) - 1)
+				* Integer.valueOf(pageSize);
 		Integer offset = Integer.valueOf(pageSize);
-		
-		mv.addObject("bloglist",blogService.getBlogList(stanum,offset));
-		mv.addObject("blogcount", blogService.getBlogAllList().size());
+
+		int count = blogService.getBlogAllList(type).size();
+		mv.addObject("bloglist", blogService.getBlogList(type, stanum, offset));
+		mv.addObject("blogcount", count);
 		mv.addObject("pageNo", Integer.valueOf(pageNo));
 		mv.addObject("pageSize", Integer.valueOf(pageSize));
-		int pageMaxNo = blogService.getBlogAllList().size()/Integer.valueOf(pageSize);
-		if(blogService.getBlogAllList().size()%Integer.valueOf(pageSize)!=0){
-			pageMaxNo ++;
+		int pageMaxNo = count / Integer.valueOf(pageSize);
+		if (count % Integer.valueOf(pageSize) != 0) {
+			pageMaxNo++;
 		}
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);
-		
+
 		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
 		return mv;
 	}
@@ -138,10 +146,16 @@ public class BlogController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/getMsg")
+	@ResponseBody
+	public List<MyMsg> getMsg(){
+		return msgService.getMsgAllList();
+	}
+	
 	@RequestMapping(value = "/sendMsg",method = RequestMethod.POST)
 	@ResponseBody
 	public String sendMsg(@ModelAttribute("myMsg")MyMsg myMsg){
-		if(StringUtils.isBlank(myMsg.getEmail())){
+		if(StringUtils.isBlank(myMsg.getName())){
 			return "0";
 		}		
 		if(StringUtils.isBlank(myMsg.getEmail())){
@@ -176,8 +190,54 @@ public class BlogController {
 			return mv;
 		}
 		
+		String pageNo = request.getParameter("pageNo");
+		String pageSize = request.getParameter("pageSize");
+		
+		if(!StringUtils.isNumberic(pageNo)||!StringUtils.isNumberic(pageSize)){
+			return mv;
+		}
+		
+		Integer stanum = (Integer.valueOf(pageNo)-1) * Integer.valueOf(pageSize);
+		Integer offset = Integer.valueOf(pageSize);
+		
+		int count = commentService.getCommentAllList(Long.valueOf(id)).size();
+		mv.addObject("commentlist",commentService.getCommentList(Long.valueOf(id), stanum, offset));
+		mv.addObject("commentcount", count);
+		
+		mv.addObject("pageNo", Integer.valueOf(pageNo));
+		mv.addObject("pageSize", Integer.valueOf(pageSize));
+		int pageMaxNo = count / Integer.valueOf(pageSize);
+		if(count % Integer.valueOf(pageSize)!=0){
+			pageMaxNo ++;
+		}
+		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
 		mv.addObject("blog",blogService.getBlogDetail(Long.valueOf(id)));
 		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
 		return mv;
+	}
+	
+	@RequestMapping(value = "/sendComment",method = RequestMethod.POST)
+	@ResponseBody
+	public String sendMsg(@ModelAttribute("myComment")MyComment myComment){
+		if(StringUtils.isBlank(myComment.getUserName())){
+			return "0";
+		}		
+		if(StringUtils.isBlank(myComment.getUserEmail())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myComment.getContent())){
+			return "0";
+		}
+		if(!StringUtils.isEmail(myComment.getUserEmail())){
+			return "0";
+		}
+		myComment.setAddTime(new Date());
+		myComment.setReplyState(0);
+		
+		if(commentService.insertComment(myComment)==0){
+			return "0";
+		}
+		return "1";
 	}
 }

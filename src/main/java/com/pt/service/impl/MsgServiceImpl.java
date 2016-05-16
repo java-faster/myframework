@@ -1,5 +1,8 @@
 package com.pt.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +20,14 @@ public class MsgServiceImpl implements IMsgService {
 	public int insertMsg(MyMsg myMsg) {
 		// TODO Auto-generated method stub
 		return myMsgMapper.insertSelective(myMsg);
+	}
+
+	@Override
+	public List<MyMsg> getMsgAllList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("stanum", 0);
+		map.put("offset", 5);
+		return myMsgMapper.getMsgList(map);
 	}
 
 }

@@ -131,7 +131,6 @@ ddsmoothmenu.init({
 
 
 </body>
-<script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
 <script type="text/javascript"> 
 $.ajax({
         url: "${pageContext.request.contextPath}/blog/photoItem",

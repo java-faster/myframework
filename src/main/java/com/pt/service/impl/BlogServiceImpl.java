@@ -17,18 +17,19 @@ public class BlogServiceImpl implements IBlogService {
 	private MyBlogMapper myBlogMapper;
 
 	@Override
-	public List<MyBlog> getBlogList(int stanum, int offset) {
+	public List<MyBlog> getBlogList(String type, int stanum, int offset) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("stanum", stanum);
 		map.put("offset", offset);
+		map.put("type", type);
 		return myBlogMapper.getMyBlogLst(map);
 	}
 
 	@Override
-	public List<MyBlog> getBlogAllList() {
+	public List<MyBlog> getBlogAllList(String type) {
 		// TODO Auto-generated method stub
-		return myBlogMapper.getMyBlogAllLst();
+		return myBlogMapper.getMyBlogAllLst(type);
 	}
 
 	@Override

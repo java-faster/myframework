@@ -34,7 +34,37 @@ ddsmoothmenu.init({
 	classname: 'ddsmoothmenu', //class added to menu's outer DIV
 	//customtheme: ["#1c5a80", "#18374a"],
 	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-})
+});
+
+function sendComment(id){
+	var name = $("#name").val();
+	var email = $("#email").val();
+	var content = $("#comment").val();
+	
+	$.ajax({
+	    url: "${pageContext.request.contextPath}/blog/sendComment",
+	    type: "POST",
+	    dataType: "text/html",
+	    data: {
+	    	blogId : id,
+	    	userName : name,
+	    	userEmail : email,
+	    	content : content
+	    },
+	    async: true,
+	    success: function(data) {
+	    	if(data == 0){
+	    		alert("发送错误");
+	    	}else{
+	    		alert("发送成功");
+	    	}
+	    	
+	    },
+	    error: function(msg) {
+	    	alert(msg);
+	    }
+	});
+}
 
 </script>
 
@@ -93,111 +123,77 @@ ddsmoothmenu.init({
                 <p align="justify">${blog.description}</p>
                 <p align="justify">${blog.content}</p>
           </div>
-            <h3>Comments</h3>
+            <h3>评论</h3>
             <ol class="comment_list">
+            
+            <c:forEach items="${commentlist }" var="comment" varStatus="row">
             <li>
                 <div class="comment_box">
                     <img src="${pageContext.request.contextPath}/images/avator.jpg" alt="" class="img_fl img_border" />
                     <div class="comment_content">
-                        <div class="comment_meta"><strong><a href="#">Kent Well</a></strong><br />
-                        Posted on 16 January 2084 [7:17 AM]</div>
-                        <p>Suspendisse commodo nibh at eleifend imperdiet. Quisque sollicitudin   tellus eget sodales dapibus. Pellentesque ut sem eu diam volutpat cursus   at ut odio. Donec sit amet urna aliquet sapien tincidunt posuere.</p>
-                        <a href="#" class="more">Reply</a>
+                        <div class="comment_meta"><strong><a href="#">${comment.userName}</a></strong><br />
+                        Posted on <fmt:formatDate value="${comment.addTime}" pattern="yyyy-MM-dd"/></div>
+                        <p>${comment.content }</p>
                     </div>
                     <div class="clear"></div>
                 </div>
             </li>
+            <c:if test="${comment.replyState eq 1}">
             <li>
                 <ul>
                     <li class="depth_2">
                         <div class="comment_box">
                             <img src="${pageContext.request.contextPath}/images/avator.jpg" alt="" class="img_fl img_border" />
                             <div class="comment_content">
-                            <div class="comment_meta"><strong><a href="#">William</a></strong><br />
-                        	Posted on 18 January 2084 [7:44 PM]</div>
-                            <p>Cras in metus vulputate, consequat eros a, consectetur nulla. Aliquam erat volutpat. Integer dui sapien, vehicula ut tempor nec, dignissim id lacus. Nulla porta quis purus eget dignissim.</p>
-                            <a href="#" class="more">Reply</a>
+                            <div class="comment_meta"><strong><a href="#">葛宏斌</a></strong><br />
+                        	Posted on <fmt:formatDate value="${comment.replyTime}" pattern="yyyy-MM-dd"/></div>
+                            <p>${comment.replyContent}</p>
                             </div>
                             <div class="clear"></div>
                         </div>
                     </li>
-                    <ul>
-                        <li class="depth_3">
-                            <div class="comment_box">
-                                <img src="${pageContext.request.contextPath}/images/avator.jpg" alt="" class="img_fl img_border" />
-                                <div class="comment_content">
-                                <div class="comment_meta"><strong><a href="#">Stephen</a></strong><br />
-                        		Posted on 20 January 2084 [11:50 AM]</div>
-                                <p> Suspendisse commodo nibh at eleifend imperdiet. Quisque sollicitudin tellus eget sodales dapibus. Pellentesque ut sem eu diam volutpat cursus at ut odio.</p>
-                                <a href="#" class="more">Reply</a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                    </ul>
                 </ul>
             </li>
-            <li>
-                <div class="comment_box">
-                    <img src="${pageContext.request.contextPath}/images/avator.jpg" alt="" class="img_fl img_border" />
-                    <div class="comment_content">
-                        <div class="comment_meta"><strong><a href="#">James</a></strong><br />
-                        Posted on 21 January 2084 [9:25 PM]</div>
-                        <p>Morbi massa dui, pretium dictum dapibus vitae, imperdiet sit amet est.   In dui sem, vulputate quis augue dapibus, sodales dapibus velit. Etiam   aliquam laoreet cursus. Nunc sagittis metus varius congue ornare.</p>
-                        <a href="#" class="more">Reply</a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </li>
-            <li>
-                <div class="comment_box">
-                    <img src="${pageContext.request.contextPath}/images/avator.jpg" alt="" class="img_fl img_border" />
-                    <div class="comment_content">
-                        <div class="comment_meta"><strong><a href="#">Ronald Duck</a></strong><br />
-                        Posted on 22 January 2084 [10:12 AM]</div>
-                        <p>Nulla ut accumsan magna, in commodo erat. Maecenas sed malesuada lacus. Nam mi sem, fringilla in erat ut, aliquam rhoncus neque. Nulla laoreet ante ac eros imperdiet blandit.</p>
-                        <a href="#" class="more">Reply</a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </li>
+            </c:if>
+            </c:forEach>
         </ol>
         
         <div class="clear"></div>
             
             <div class="templatemo_paging">
                 <ul>
-                    <li><a  href="http://www.cssmoban.com" target="_parent">Previous</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">1</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">2</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">3</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">4</a></li>
-                    <li><a  href="http://www.cssmoban.com/" target="_parent">5</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/6" target="_parent">6</a></li>
-                    <li><a  href="http://www.cssmoban.com/page/7" target="_parent">Next</a></li>
+                    <c:if test="${pageNo ne 1}">
+                   	    <li><a href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}&pageNo=${pageNo - 1}&pageSize=3" target="_parent">Previous</a></li>
+                    </c:if>
+                    <c:forEach items="${pageNoList }" var="item" varStatus="row">
+                    <li ><a style="<c:if test='${row.index + 1 eq pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}&pageNo=${row.index + 1}&pageSize=3" target="_parent" >${row.index + 1}</a></li>
+					</c:forEach>
+                    <c:if test="${pageNo * pageSize lt blogcount}">
+                        <li><a  href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}&pageNo=${pageNo + 1}&pageSize=3" target="_parent">Next</a></li>
+                    </c:if>
                 </ul>
                 <div class="clear"></div>
             </div>
             
             <div id="comment_form">
-            <h3>Leave your comment</h3>
+            <h3>留下你的足迹</h3>
             
             <form action="#" method="post">
                 <div class="form_row">
-                    <label>Name</label><br />
-                    <input name="fullname" type="text" maxlength="30" id="fullname" />
+                    <label>昵称</label><br />
+                    <input name="fullname" type="text" maxlength="30" id="name" />
                 </div>
                 <div class="form_row">
-                    <label>Email (*required)</label>
+                    <label>Email</label>
                   <br />
                     <input name="email" type="text" id="email" maxlength="30" />
                 </div>
                 <div class="form_row">
-                    <label>Comment</label><br />
-                    <textarea  name="comment" rows="" cols=""></textarea>
+                    <label>评论内容</label><br />
+                    <textarea  id="comment" name="comment" rows="" cols=""></textarea>
                 </div>
 
-                <input type="submit" name="Submit" value="Submit" class="submit_btn" />
+                <input  type="button" name="Submit" value="评论" onclick="return sendComment(${blog.id});" class="submit_btn" />
             </form>
             
         
@@ -212,58 +208,23 @@ ddsmoothmenu.init({
                 <h3>分类</h3>
                 <ul class="sidebar_link_list">
                 	<c:forEach items="${categoriesList }" var="categories" varStatus="row">
-                    	<li><a href="#">${categories.name }</a></li>
+                    	<li><a href="${pageContext.request.contextPath}/blog/blog?type=${categories.name }&pageNo=1&pageSize=3">${categories.name }</a></li>
                     </c:forEach>
                 </ul>
 			</div>
             
             <div class="sidebar_section sidebar_section_bg">
-                <h3>Recent Comments</h3>
-                <ul class="sidebar_link_list comment">
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Van</strong> on <a href="#">Quisque dolor dolor</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>George</strong> on <a href="#">Curabitur Mollis Justo</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Walker</strong> on <a href="#">Praesent venenatis ante neque</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>David</strong> on <a href="#">Etiam dictum pulvinar neque</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Zoom</strong> on <a href="#">Maecenas fringilla felis quis</a>
-						</span>
-					</li>
+                <h3>留言</h3>
+                <ul id="msg" class="sidebar_link_list comment">
                 </ul>
             </div>
             
             <div class="sidebar_section sidebar_section_bg">
-                <h3>Blogroll</h3>
+                <h3>友情链接</h3>
                 <ul class="sidebar_link_list">
-                    <li><a href="#">Mauris vel gravida est</a></li>
-                    <li><a href="#">Duis in libero est</a></li>
-                    <li><a href="#">Nulla luctus nisl nec orci</a></li>
-                    <li><a href="#">Cras in metus vulputate</a></li>
-                    <li><a href="#">Consectetur adipiscing eli</a></li>
-                    <li><a href="#">Nullam vulputate est</a></li>
-                    <li><a href="#">Duis porta velit</a></li>
-                    <li><a href="#">Pretium suscipit</a></li>
+                    <li><a href="http://ptghb.blog.51cto.com/">老葛的技术博客</a></li>
+                    <li><a href="https://www.yinxiang.com/">印象笔记</a></li>
+                    <li><a href="https://www.baidu.com/">百度搜索</a></li>
                 </ul>
 			</div>
             
@@ -298,7 +259,6 @@ ddsmoothmenu.init({
 
 
 </body>
-<script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
 <script type="text/javascript"> 
 $.ajax({
         url: "${pageContext.request.contextPath}/blog/photoItem",
@@ -331,5 +291,22 @@ $.ajax({
     	alert("错误提示",msg);
     }
 });
+
+$.ajax({
+    url: "${pageContext.request.contextPath}/blog/getMsg",
+    type: "GET",
+    dataType: "json",
+    data: "",
+    async: false,
+    success: function(data) {
+    	for(var i=0;i<data.length;i++){
+    		$("#msg").append("<li><span>"+data[i].content+"</span><span class='comment_meta'><strong>"+data[i].title+"</strong> from <a href='#'>"+data[i].name+"</a></span></li>"); 
+    	}
+    },
+    error: function(msg) {
+    	alert("错误提示",msg);
+    }
+});
+
 </script>
 </html>

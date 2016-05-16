@@ -91,7 +91,7 @@ ddsmoothmenu.init({
 				</div>
                 <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
                 <p>${blog.description}</p>
-                <a class="more" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}">详细</a>
+                <a class="more" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}&pageNo=1&pageSize=3">详细</a>
 			</div>
 			</c:forEach>
             
@@ -120,58 +120,23 @@ ddsmoothmenu.init({
                 <h3>分类</h3>
                 <ul class="sidebar_link_list">
                 	<c:forEach items="${categoriesList }" var="categories" varStatus="row">
-                    	<li><a href="#">${categories.name }</a></li>
+                    	<li><a href="${pageContext.request.contextPath}/blog/blog?type=${categories.name }&pageNo=1&pageSize=3">${categories.name }</a></li>
                     </c:forEach>
                 </ul>
 			</div>
             
             <div class="sidebar_section sidebar_section_bg">
-                <h3>Recent Comments</h3>
-                <ul class="sidebar_link_list comment">
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Van</strong> on <a href="#">Quisque dolor dolor</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>George</strong> on <a href="#">Curabitur Mollis Justo</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Walker</strong> on <a href="#">Praesent venenatis ante neque</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>David</strong> on <a href="#">Etiam dictum pulvinar neque</a>
-						</span>
-					</li>
-                    <li>
-                    	<span>Donec rhoncus, neque quis dapibus dapibus, lorem tortor semper est...</span>
-                        <span class="comment_meta">
-		                    <strong>Zoom</strong> on <a href="#">Maecenas fringilla felis quis</a>
-						</span>
-					</li>
+                <h3>留言</h3>
+                <ul id="msg" class="sidebar_link_list comment">
                 </ul>
             </div>
             
             <div class="sidebar_section sidebar_section_bg">
                 <h3>友情链接</h3>
                 <ul class="sidebar_link_list">
-                    <li><a href="#">Mauris vel gravida est</a></li>
-                    <li><a href="#">Duis in libero est</a></li>
-                    <li><a href="#">Nulla luctus nisl nec orci</a></li>
-                    <li><a href="#">Cras in metus vulputate</a></li>
-                    <li><a href="#">Consectetur adipiscing eli</a></li>
-                    <li><a href="#">Nullam vulputate est</a></li>
-                    <li><a href="#">Duis porta velit</a></li>
-                    <li><a href="#">Pretium suscipit</a></li>
+                    <li><a href="http://ptghb.blog.51cto.com/">老葛的技术博客</a></li>
+                    <li><a href="https://www.yinxiang.com/">印象笔记</a></li>
+                    <li><a href="https://www.baidu.com/">百度搜索</a></li>
                 </ul>
 			</div>
             
@@ -206,7 +171,6 @@ ddsmoothmenu.init({
 
 
 </body>
-<script type='text/javascript' src='${pageContext.request.contextPath}/js/logging.js'></script>
 <script type="text/javascript"> 
 $.ajax({
         url: "${pageContext.request.contextPath}/blog/photoItem",
@@ -233,6 +197,22 @@ $.ajax({
     success: function(data) {
     	for(var i=0;i<data.length;i++){
     		$("#imgfoot").append("<li><a href='${pageContext.request.contextPath}"+ data[i].imgPath +"' rel='lightbox[gallery]'><img src='${pageContext.request.contextPath}"+ data[i].imgPath +"' alt='"+data[i].title+"' /></a></li>");
+    	}
+    },
+    error: function(msg) {
+    	alert("错误提示",msg);
+    }
+});
+
+$.ajax({
+    url: "${pageContext.request.contextPath}/blog/getMsg",
+    type: "GET",
+    dataType: "json",
+    data: "",
+    async: false,
+    success: function(data) {
+    	for(var i=0;i<data.length;i++){
+    		$("#msg").append("<li><span>"+data[i].content+"</span><span class='comment_meta'><strong>"+data[i].title+"</strong> from <a href='#'>"+data[i].name+"</a></span></li>"); 
     	}
     },
     error: function(msg) {

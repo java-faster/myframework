@@ -5,7 +5,7 @@ import java.util.List;
 import com.pt.entity.MyBlog;
 
 public interface IBlogService {
-	public List<MyBlog> getBlogList(int stanum, int offset);
-	public List<MyBlog> getBlogAllList();
+	public List<MyBlog> getBlogList(String type, int stanum, int offset);
+	public List<MyBlog> getBlogAllList(String type);
 	public MyBlog getBlogDetail(Long id);
 }
