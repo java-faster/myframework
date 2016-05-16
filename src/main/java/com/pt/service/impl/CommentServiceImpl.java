@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pt.dao.MyCommentMapper;
 import com.pt.entity.MyComment;
@@ -32,12 +33,11 @@ public class CommentServiceImpl implements ICommentService {
 		return myCommentMapper.selectAllByBlogId(id);
 	}
 
+	@Transactional
 	@Override
 	public int insertComment(MyComment myComment) {
 		// TODO Auto-generated method stub
 		return myCommentMapper.insertSelective(myComment);
 	}
 
-
-	
 }

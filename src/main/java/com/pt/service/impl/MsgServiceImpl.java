@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pt.dao.MyMsgMapper;
 import com.pt.entity.MyMsg;
@@ -16,6 +17,7 @@ public class MsgServiceImpl implements IMsgService {
 	@Resource
 	private MyMsgMapper myMsgMapper;
 
+	@Transactional
 	@Override
 	public int insertMsg(MyMsg myMsg) {
 		// TODO Auto-generated method stub
