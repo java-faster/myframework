@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-05-13 15:38:23
+Date: 2016-05-16 14:02:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `my_blog` (
 -- ----------------------------
 -- Records of my_blog
 -- ----------------------------
-INSERT INTO `my_blog` VALUES ('1', '第一篇日志', '/images/blog/01.jpg', null, '第一篇日志简介', '2016-05-07 10:54:59', '2016-05-07 10:55:05', '北京', '10', '100', '随笔');
+INSERT INTO `my_blog` VALUES ('1', '第一篇日志', '/images/blog/01.jpg', '第一篇日志内容', '第一篇日志简介', '2016-05-07 10:54:59', '2016-05-07 10:55:05', '北京', '10', '100', '随笔');
 INSERT INTO `my_blog` VALUES ('2', '第二篇日志', '/images/blog/01.jpg', null, '第二篇日志简介', '2016-05-05 10:57:19', '2016-05-05 10:57:19', '北京', '1', '3', '随笔');
 INSERT INTO `my_blog` VALUES ('3', '第三篇日志', '/images/blog/01.jpg', '', '第三篇日志简介', '2016-05-03 10:57:19', '2016-05-03 10:57:19', '北京', '200', '4', '随笔');
 INSERT INTO `my_blog` VALUES ('4', '第四篇日志', '/images/blog/01.jpg', '', '第四篇日志简介', '2016-05-03 10:57:19', '2016-05-03 10:57:19', '北京', '200', '4', '随笔');
@@ -72,14 +72,19 @@ CREATE TABLE `my_comment` (
   `blog_id` bigint(20) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
   `user_name` varchar(30) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
+  `reply_state` int(11) DEFAULT NULL,
+  `reply_content` varchar(255) DEFAULT NULL,
+  `reply_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of my_comment
 -- ----------------------------
+INSERT INTO `my_comment` VALUES ('1', '1', '很好', null, 'ptghb@163.com', '哈哈', '2016-05-16 11:37:43', '1', '谢谢', '2016-05-16 11:38:55');
 
 -- ----------------------------
 -- Table structure for my_msg
@@ -94,11 +99,12 @@ CREATE TABLE `my_msg` (
   `state` int(11) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of my_msg
 -- ----------------------------
+INSERT INTO `my_msg` VALUES ('2', 'ptghb@qq.com', '1', '1', '1', '0', '2016-05-13 16:59:03');
 
 -- ----------------------------
 -- Table structure for my_photo
