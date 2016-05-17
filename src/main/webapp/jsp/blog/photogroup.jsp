@@ -57,8 +57,8 @@ ddsmoothmenu.init({
                 <li><a href="${pageContext.request.contextPath}/blog/about">关于我</a>
                     <ul>
                         <li><a href="#">个人独白</a></li>
-                        <li><a href="#">个人经历</a></li>
-                        <li><a href="#">我的简历</a></li>
+                        <li><a href="${pageContext.request.contextPath}/aboutme/personExp">个人经历</a></li>
+                        <li><a href="${pageContext.request.contextPath}/aboutme/personResume">我的简历</a></li>
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/blog/contact">联系我</a></li>

@@ -16,10 +16,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ddsmoothmenu.js"></script>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/component.css" />
-<script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
-
 <script type="text/javascript">
 
 /***********************************************
@@ -72,7 +68,7 @@ ddsmoothmenu.init({
                     <ul>
                         <li><a href="#">个人独白</a></li>
                         <li><a href="${pageContext.request.contextPath}/aboutme/personExp">个人经历</a></li>
-                        <li><a href="#">我的简历</a></li>
+                        <li><a href="${pageContext.request.contextPath}/aboutme/personResume">我的简历</a></li>
                   </ul>
                 </li>
                 <li><a href="${pageContext.request.contextPath}/blog/contact">联系我</a></li>
@@ -97,22 +93,6 @@ ddsmoothmenu.init({
         <span style="float: left;background-color: #99ccff;margin: 50px;width: 200px;height: 200px;line-height:200px; text-align: center;vertical-align: middle;color: white;font-weight:bold;font-size:30px;" class="radiusbtn">简历</span>
         
         <div class="clear"></div>
-        
-        <button class="md-trigger" data-modal="modal-11">Super Scaled</button>
-        <div class="md-modal md-effect-11" id="modal-11">
-			<div class="md-content">
-				<h3>Modal Dialog</h3>
-				<div>
-					<p>This is a modal window. You can do the following things with it:</p>
-					<ul>
-						<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
-						<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
-						<li><strong>Close:</strong> click on the button below to close the modal.</li>
-					</ul>
-					<button class="md-close">Close me!</button>
-				</div>
-			</div>
-		</div>
         
     </div> <!-- END of main -->
 </div> <!-- END of wrapper -->
@@ -173,16 +153,4 @@ $.ajax({
     }
 });
 </script>
-<!-- classie.js by @desandro: https://github.com/desandro/classie -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/classie.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/modalEffects.js"></script>
-
-<!-- for the blur effect -->
-<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-		<script>
-			// this is important for IEs
-			var polyfilter_scriptpath = '/js/';
-		</script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/cssParser.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/css-filters-polyfill.js"></script>
 </html>

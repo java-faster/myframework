@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>老葛的经历</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/history.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/history.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easing.js"></script>
