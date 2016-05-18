@@ -38,5 +38,10 @@ public class BlogServiceImpl implements IBlogService {
 		return myBlogMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public int addBlog(MyBlog myBlog) {
+		return myBlogMapper.insertSelective(myBlog);
+	}
+
 	
 }
