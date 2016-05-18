@@ -34,7 +34,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jpreLoader.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/custom.js"></script>
 
-</head>
 <!--引用百度地图API-->
 <style type="text/css">
     html,body{margin:0;padding:0;}
@@ -46,21 +45,19 @@
 <script type="text/JavaScript">
 function sendMsg(){
 	var name = $("#name").val();
-	var title = $("#title").val();
 	var email = $("#email").val();
-	var content = $("#content").val();
+	var content = $("#message").val();
 	
 	$.ajax({
-	    url: "${pageContext.request.contextPath}/blog/sendMsg",
+	    url: "${pageContext.request.contextPath}/aboutme/sendEmail",
 	    type: "POST",
 	    dataType: "text/html",
 	    data: {
 	    	name : name,
-	    	title : title,
 	    	email : email,
 	    	content : content
 	    },
-	    async: false,
+	    async: true,
 	    success: function(data) {
 	    	if(data == 0){
 	    		alert("发送错误");
@@ -75,6 +72,8 @@ function sendMsg(){
 	});
 }
 </script>
+
+</head>
 <body>
 <!-- Wrapper -->
 <div id="wrapper">
@@ -262,12 +261,12 @@ function sendMsg(){
                         	<div class="group-container">
                                 <h2>Experience</h2>
                                 <div class="resume-group">
-                                    <h3>苏州凌志软件 - 初级软件设计师, 2013.7 ~ 2015.10</h3>
+                                    <h3>苏州凌志软件 - 初级软件设计师, 2013.7 ~ 2015.12</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas erat nunc. Phasellus vel orci ligula. Quisque dignissim velit vel augue adipiscing quis porta neque congue. Aliquam vulputate, odio sed rutrum eleifend, nisi mi facilisis turpis, ut sodales quam lectus eu felis. Pellentesque justo magna, tincidunt vel dignissim nec, tincidunt id nisi. Maecenas varius quam at ante laoreet quis semper ante egestas. In et velit dui. Sed porttitor condimentum rhoncus. </p>
                                 </div>
                                 
                                 <div class="resume-group">
-                                    <h3>Art Director - Ricardo tech, 2011 - NOW</h3>
+                                    <h3>北京中鼎博华 - 中级软件设计师, 2016.3 - NOW</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas erat nunc. Phasellus vel orci ligula. Quisque dignissim velit vel augue adipiscing quis porta neque congue. Aliquam vulputate, odio sed rutrum eleifend, nisi mi facilisis turpis, ut sodales quam lectus eu felis. Pellentesque justo magna, tincidunt vel dignissim nec, tincidunt id nisi. Maecenas varius quam at ante laoreet quis semper ante egestas. In et velit dui. Sed porttitor condimentum rhoncus. </p>
                                 </div>
                             </div>
@@ -354,20 +353,20 @@ function sendMsg(){
                         
                     	<div class="two-three">
                             <h2>联系我</h2>
-                            <form id="contact-form" method="POST" action="contact.php" />
+                            <form id="contact-form"  />
                             	<div class="form-component">
                                     <h3>Name</h3>
-                                    <input type="text" class="input textfield" name="name" />
+                                    <input type="text" class="input textfield" name="name" id="name"/>
                                 </div>
                                 
                             	<div class="form-component">
                                     <h3>Email</h3>
-                                    <input type="text" class="input textfield" name="email" />
+                                    <input type="text" class="input textfield" name="email" id="email"/>
                                 </div>
                                 
                             	<div class="form-component">
                             		<h3>Message</h3>
-                                	<textarea class="input textarea" name="message"></textarea>
+                                	<textarea class="input textarea" name="message" id="message"></textarea>
                                 </div>
                                 
                                 <input type="button" class="btn" value="发送邮件" onclick="return sendMsg();" />
