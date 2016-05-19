@@ -52,7 +52,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/addNewArticle",method=RequestMethod.POST)
+	@RequestMapping(value = "/addNewArticle",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String addNewArticle(@ModelAttribute("myBlog")MyBlog myBlog){
 		if(StringUtils.isBlank(myBlog.getTitle())){

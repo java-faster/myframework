@@ -217,7 +217,7 @@ public class BlogController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/sendComment",method = RequestMethod.POST)
+	@RequestMapping(value = "/sendComment",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String sendMsg(@ModelAttribute("myComment")MyComment myComment){
 		if(StringUtils.isBlank(myComment.getUserName())){

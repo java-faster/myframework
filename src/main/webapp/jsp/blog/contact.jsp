@@ -54,7 +54,7 @@ function sendMsg(){
 	$.ajax({
 	    url: "${pageContext.request.contextPath}/blog/sendMsg",
 	    type: "POST",
-	    dataType: "text/html",
+	    dataType: "text",
 	    data: {
 	    	name : name,
 	    	title : title,

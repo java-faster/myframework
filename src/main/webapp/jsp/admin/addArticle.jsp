@@ -57,7 +57,7 @@ function publishBlog(){
 	 $.ajax({
 	        url: "${pageContext.request.contextPath}/admin/addNewArticle",
 	        type: "POST",
-	        dataType : 'text/html', 
+	        dataType : 'text', 
 	        data : {
 	        	title:$("#title").val(),
 	        	content:removeHtmlTag($(".nicEdit-main").html()),
@@ -66,9 +66,15 @@ function publishBlog(){
 	        	},
 	        async: false,
 	        success: function(data) {
-	        	$("#title").val("");
-	        	$(".nicEdit-main").html("");
-	        	$("#categories").val("");
+	        	alert(data);
+	        	if(data == 0){
+		    		alert("发送错误");
+		    	}else{
+		    		alert("发送成功");
+		        	$("#title").val("");
+		        	$(".nicEdit-main").html("");
+		        	$("#categories").val("");
+		    	}
 	        },
 	        error: function(msg) {
 	        	alert(msg);

@@ -51,7 +51,7 @@ function sendMsg(){
 	$.ajax({
 	    url: "${pageContext.request.contextPath}/aboutme/sendEmail",
 	    type: "POST",
-	    dataType: "text/html",
+	    dataType: "text",
 	    data: {
 	    	name : name,
 	    	email : email,
@@ -63,8 +63,10 @@ function sendMsg(){
 	    		alert("发送错误");
 	    	}else{
 	    		alert("发送成功");
+		    	$("#name").val("");
+		    	$("#email").val("");
+		    	$("#message").val("");
 	    	}
-	    	
 	    },
 	    error: function(msg) {
 	    	alert(msg);
