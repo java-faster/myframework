@@ -45,6 +45,38 @@ public class AdminController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/articleList")
+	public ModelAndView articleList(HttpServletRequest request){
+		
+		ModelAndView mv = new ModelAndView();
+
+		String pageNo = request.getParameter("pageNo");
+		String pageSize = request.getParameter("pageSize");
+		String type = request.getParameter("type");
+
+		if (!StringUtils.isNumberic(pageNo)
+				|| !StringUtils.isNumberic(pageSize)) {
+			return mv;
+		}
+
+		Integer stanum = (Integer.valueOf(pageNo) - 1)
+				* Integer.valueOf(pageSize);
+		Integer offset = Integer.valueOf(pageSize);
+
+		int count = blogService.getBlogAllList(type).size();
+		mv.addObject("bloglist", blogService.getBlogList(type, stanum, offset));
+		mv.addObject("blogcount", count);
+		mv.addObject("pageNo", Integer.valueOf(pageNo));
+		mv.addObject("pageSize", Integer.valueOf(pageSize));
+		int pageMaxNo = count / Integer.valueOf(pageSize);
+		if (count % Integer.valueOf(pageSize) != 0) {
+			pageMaxNo++;
+		}
+		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "/addArticle")
 	public ModelAndView addArticle(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();

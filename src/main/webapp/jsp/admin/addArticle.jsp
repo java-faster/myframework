@@ -16,9 +16,11 @@
        <div class="control-group" >
            <div class="controls">
              <p class="help-block"></p>
-             <input id='title' class="input_from" style="width:50%" placeholder="请输入标题" type="text"/>
-             <select id='categories' style="width:10%;height: 30%;">
-	             <option value =""> </option>
+             <input id='title' class="input_from" style="width:5%;height:50px;border: 0;text-align: center;" value="标题" type="text"/>
+             <input id='title' class="input_from" style="width:50%;height:50px;" placeholder="请输入标题" type="text"/>
+             <input id='title' class="input_from" style="width:5%;height:50px;border: 0;text-align: center;" value="分类" type="text"/>
+             <select id='categories' style="width:10%;height:50px;">
+	             <option value=""></option>
 	             <c:forEach items="${categoriesList }" var="categories" varStatus="row">
 	             	<option value ="${categories.name }"> ${categories.name } </option>
 	             </c:forEach>
@@ -33,15 +35,14 @@
             </div>
 	   </div>
 	   <div class="control-group">
-            <label class="laber_from"></label>
             <div class="controls">&nbsp;</div>
             <div class="controls">
                    <button class="btn btn-success" style="width:120px;" onclick="publishBlog()">发布</button>
                    <button class="btn btn-warning" style="width:120px;" onclick="cancelEdit()">取消</button>
             </div>
+           <div class="controls">&nbsp;</div>
         </div>
 </div>
-</body>
 <script type="text/javascript">
 var area1;
 function toggleArea() {
@@ -60,13 +61,13 @@ function publishBlog(){
 	        dataType : 'text', 
 	        data : {
 	        	title:$("#title").val(),
-	        	content:removeHtmlTag($(".nicEdit-main").html()),
-	        	description:$(".nicEdit-main").html(),
+	        	description:removeHtmlTag($(".nicEdit-main").html()),
+	        	content:$(".nicEdit-main").html(),
+	        	location:"北京",
 	        	categories:$("#categories").val()
 	        	},
 	        async: false,
 	        success: function(data) {
-	        	alert(data);
 	        	if(data == 0){
 		    		alert("发送错误");
 		    	}else{
@@ -88,4 +89,5 @@ function removeHtmlTag(str){
 	return str.replace(/<[^>]+>/g,"");
 }
 </script>
+</body>
 </html>

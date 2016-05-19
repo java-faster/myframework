@@ -137,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="${pageContext.request.contextPath }/admin/categories" target="iframepage">分类</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/admin/article" target="iframepage">文章列表</a>
+                                    <a href="${pageContext.request.contextPath }/admin/articleList?pageNo=1&pageSize=20" target="iframepage">文章列表</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath }/admin/addArticle" target="iframepage">添加文章</a>
