@@ -127,4 +127,42 @@ public class AdminController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "/updArticle")
+	public ModelAndView blogDetail(HttpServletRequest request, @ModelAttribute("page")Page page){
+		ModelAndView mv = new ModelAndView();
+		
+		String id = request.getParameter("id");
+		
+		if(!StringUtils.isNumberic(id)){
+			return mv;
+		}
+		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
+		mv.addObject("blog",blogService.getBlogDetail(Long.valueOf(id)));
+		return mv;
+	}
+	
+	@RequestMapping(value = "/updExitArticle",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String updExitArticle(@ModelAttribute("myBlog")MyBlog myBlog){
+		if(StringUtils.isBlank(myBlog.getTitle())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myBlog.getContent())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myBlog.getDescription())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myBlog.getCategories())){
+			return "0";
+		}
+		Date today = new Date();
+		myBlog.setUptTime(today);
+		
+		if(blogService.updBlog(myBlog)==0){
+			return "0";
+		}
+		return "1";
+	}
 }

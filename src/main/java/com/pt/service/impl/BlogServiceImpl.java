@@ -43,5 +43,11 @@ public class BlogServiceImpl implements IBlogService {
 		return myBlogMapper.insertSelective(myBlog);
 	}
 
+	@Override
+	public int updBlog(MyBlog myBlog) {
+		// TODO Auto-generated method stub
+		return myBlogMapper.updateByPrimaryKeySelective(myBlog);
+	}
+
 	
 }

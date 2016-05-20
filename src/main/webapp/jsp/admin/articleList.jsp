@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <td>${blog.likeCount}</td>
           <td>${blog.commentCount}</td>
           <td>${blog.location}</td>
-          <td><input type="button" value="修改"/></td>
+          <td><input type="button" value="修改" onclick="javascript:window.location='${pageContext.request.contextPath}/admin/updArticle?id=${blog.id }'"/></td>
         </tr>
               	
       	</c:forEach>
