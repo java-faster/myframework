@@ -199,11 +199,17 @@
 	limit #{stanum},#{offset} 
   </select>
   
+  <select id="getPhotoAllList" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from my_photo
+  </select>
+  
   <select id="getPhotoListByGroup" parameterType="map" resultMap="BaseResultMap">
     select 
     	<include refid="Base_Column_List" />
     from my_photo
-	where group_name = #{groupName}
+		where group_name = #{groupName}
   </select>
   
 </mapper>

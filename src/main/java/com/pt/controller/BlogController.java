@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pt.entity.MyComment;
 import com.pt.entity.MyMsg;
 import com.pt.entity.MyPhoto;
+import com.pt.entity.page.Page;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
 import com.pt.service.ICommentService;
@@ -47,29 +48,20 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/blog")
-	public ModelAndView blog(HttpServletRequest request) {
+	public ModelAndView blog(HttpServletRequest request, @ModelAttribute("page")Page page) {
 		ModelAndView mv = new ModelAndView();
 
-		String pageNo = request.getParameter("pageNo");
-		String pageSize = request.getParameter("pageSize");
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
 		String type = request.getParameter("type");
 
-		if (!StringUtils.isNumberic(pageNo)
-				|| !StringUtils.isNumberic(pageSize)) {
-			return mv;
-		}
-
-		Integer stanum = (Integer.valueOf(pageNo) - 1)
-				* Integer.valueOf(pageSize);
-		Integer offset = Integer.valueOf(pageSize);
-
 		int count = blogService.getBlogAllList(type).size();
-		mv.addObject("bloglist", blogService.getBlogList(type, stanum, offset));
+		mv.addObject("bloglist", blogService.getBlogList(type, (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
 		mv.addObject("blogcount", count);
-		mv.addObject("pageNo", Integer.valueOf(pageNo));
-		mv.addObject("pageSize", Integer.valueOf(pageSize));
-		int pageMaxNo = count / Integer.valueOf(pageSize);
-		if (count % Integer.valueOf(pageSize) != 0) {
+		mv.addObject("pageNo", pageNo);
+		mv.addObject("pageSize", pageSize);
+		int pageMaxNo = count / pageSize;
+		if (count % pageSize != 0) {
 			pageMaxNo++;
 		}
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);
@@ -79,26 +71,19 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/photogroup")
-	public ModelAndView photoGroup(HttpServletRequest request){
+	public ModelAndView photoGroup(HttpServletRequest request, @ModelAttribute("page")Page page){
 		ModelAndView mv = new ModelAndView();
 		
-		String pageNo = request.getParameter("pageNo");
-		String pageSize = request.getParameter("pageSize");
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
 		
-		if(!StringUtils.isNumberic(pageNo)||!StringUtils.isNumberic(pageSize)){
-			return mv;
-		}
-		
-		Integer stanum = (Integer.valueOf(pageNo)-1) * Integer.valueOf(pageSize);
-		Integer offset = Integer.valueOf(pageSize);
-		
-		mv.addObject("grouplist",photoService.getPhotoGroupList(stanum,offset));
+		mv.addObject("grouplist",photoService.getPhotoGroupList((pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
 		mv.addObject("groupcount", photoService.getPhotoGroupAllList().size());
 		
-		mv.addObject("pageNo", Integer.valueOf(pageNo));
-		mv.addObject("pageSize", Integer.valueOf(pageSize));
-		int pageMaxNo = photoService.getPhotoGroupAllList().size()/Integer.valueOf(pageSize);
-		if(photoService.getPhotoGroupAllList().size()%Integer.valueOf(pageSize)!=0){
+		mv.addObject("pageNo", pageNo);
+		mv.addObject("pageSize", pageSize);
+		int pageMaxNo = photoService.getPhotoGroupAllList().size()/pageSize;
+		if(photoService.getPhotoGroupAllList().size() % pageSize!=0){
 			pageMaxNo ++;
 		}
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);
@@ -136,7 +121,7 @@ public class BlogController {
 	@RequestMapping(value = "/photoFoot")
 	@ResponseBody
 	public List<MyPhoto> photoFoot(HttpServletRequest request){		
-		return photoService.getPhotoAllList();
+		return photoService.getPhotoList(0,8);
 	}
 	
 	@RequestMapping(value = "/photoHome")
@@ -178,7 +163,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/blogDetail")
-	public ModelAndView blogDetail(HttpServletRequest request){
+	public ModelAndView blogDetail(HttpServletRequest request, @ModelAttribute("page")Page page){
 		ModelAndView mv = new ModelAndView();
 		
 		String id = request.getParameter("id");
@@ -187,24 +172,17 @@ public class BlogController {
 			return mv;
 		}
 		
-		String pageNo = request.getParameter("pageNo");
-		String pageSize = request.getParameter("pageSize");
-		
-		if(!StringUtils.isNumberic(pageNo)||!StringUtils.isNumberic(pageSize)){
-			return mv;
-		}
-		
-		Integer stanum = (Integer.valueOf(pageNo)-1) * Integer.valueOf(pageSize);
-		Integer offset = Integer.valueOf(pageSize);
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
 		
 		int count = commentService.getCommentAllList(Long.valueOf(id)).size();
-		mv.addObject("commentlist",commentService.getCommentList(Long.valueOf(id), stanum, offset));
+		mv.addObject("commentlist",commentService.getCommentList(Long.valueOf(id), (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
 		mv.addObject("commentcount", count);
 		
-		mv.addObject("pageNo", Integer.valueOf(pageNo));
-		mv.addObject("pageSize", Integer.valueOf(pageSize));
-		int pageMaxNo = count / Integer.valueOf(pageSize);
-		if(count % Integer.valueOf(pageSize)!=0){
+		mv.addObject("pageNo", pageNo);
+		mv.addObject("pageSize", pageSize);
+		int pageMaxNo = count / pageSize;
+		if(count % pageSize!=0){
 			pageMaxNo ++;
 		}
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);

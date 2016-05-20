@@ -46,9 +46,14 @@ public class PhotoServiceImpl implements IPhotoService {
 
 	@Override
 	public List<MyPhoto> getPhotoAllList() {
+		return myPhotoMapper.getPhotoAllList();
+	}
+
+	@Override
+	public List<MyPhoto> getPhotoList(int stanum, int offset) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("stanum", 0);
-		map.put("offset", 8);
+		map.put("stanum", stanum);
+		map.put("offset", offset);
 		return myPhotoMapper.getPhotoList(map);
 	}
 

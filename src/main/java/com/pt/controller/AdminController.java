@@ -1,6 +1,7 @@
 package com.pt.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.entity.MyBlog;
+import com.pt.entity.MyPhoto;
+import com.pt.entity.page.Page;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
+import com.pt.service.IPhotoService;
 import com.pt.util.StringUtils;
 
 @Controller
@@ -25,6 +29,8 @@ public class AdminController {
 	private IBlogService blogService;
 	@Resource
 	private ICategoriesService categoriesService;
+	@Resource
+	private IPhotoService photoService;
 	
 	@RequestMapping(value = "/main")
 	public ModelAndView main(HttpServletRequest request){
@@ -46,32 +52,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/articleList")
-	public ModelAndView articleList(HttpServletRequest request){
+	public ModelAndView articleList(HttpServletRequest request, @ModelAttribute("page")Page page){
 		
 		ModelAndView mv = new ModelAndView();
 
-		String pageNo = request.getParameter("pageNo");
-		String pageSize = request.getParameter("pageSize");
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
 		String type = request.getParameter("type");
 
-		if (!StringUtils.isNumberic(pageNo)
-				|| !StringUtils.isNumberic(pageSize)) {
-			return mv;
-		}
-
-		Integer stanum = (Integer.valueOf(pageNo) - 1)
-				* Integer.valueOf(pageSize);
-		Integer offset = Integer.valueOf(pageSize);
-
 		int count = blogService.getBlogAllList(type).size();
-		mv.addObject("bloglist", blogService.getBlogList(type, stanum, offset));
+		mv.addObject("bloglist", blogService.getBlogList(type, (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
 		mv.addObject("blogcount", count);
-		mv.addObject("pageNo", Integer.valueOf(pageNo));
-		mv.addObject("pageSize", Integer.valueOf(pageSize));
-		int pageMaxNo = count / Integer.valueOf(pageSize);
-		if (count % Integer.valueOf(pageSize) != 0) {
+		int pageMaxNo = count / pageSize;
+		if (count % pageSize != 0) {
 			pageMaxNo++;
 		}
+		
 		mv.addObject("pageNoList", new Integer[pageMaxNo]);
 		
 		return mv;
@@ -109,5 +105,26 @@ public class AdminController {
 			return "0";
 		}
 		return "1";
+	}
+	
+	@RequestMapping(value = "/photo")
+	public ModelAndView photo(HttpServletRequest request, @ModelAttribute("page")Page page){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
+
+		int count = photoService.getPhotoAllList().size();
+		mv.addObject("photoList", photoService.getPhotoList((pageNo - 1) * pageSize, pageSize));
+		mv.addObject("photocount", count);
+		int pageMaxNo = count / pageSize;
+		if (count % pageSize != 0) {
+			pageMaxNo++;
+		}
+		
+		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
+		return mv;
 	}
 }

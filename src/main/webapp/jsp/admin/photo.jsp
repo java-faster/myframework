@@ -34,32 +34,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <table class="table">
       <thead>
         <tr>
-          <th>编号</th>
+          <th>图片</th>
           <th>标题</th>
-          <th>分类</th>
           <th>描述</th>
+          <th>组</th>
           <th>插入时间</th>
           <th>修改时间</th>
-          <th>赞数量</th>
-          <th>评论数量</th>
-          <th>地区</th>
           <th>操作</th>
         </tr>
       </thead>
       <tbody>
-      	<c:forEach items="${bloglist }" var="blog" varStatus="row">
+      	<c:forEach items="${photoList }" var="photo" varStatus="row">
 
         <tr class="<c:if test='${row.index % 2 eq 0}'>active</c:if><c:if test='${row.index % 2 eq 1}'>success</c:if>">
-          <th scope="row">${blog.id }</th>
-          <td>${blog.title }</td>
-          <td>${blog.categories }</td>
-          <td>${blog.description }</td>
-          <td><fmt:formatDate value="${blog.addTime}" pattern="yyyy-MM-dd"/></td>
-          <td><fmt:formatDate value="${blog.uptTime}" pattern="yyyy-MM-dd"/></td>
-          <td>${blog.likeCount}</td>
-          <td>${blog.commentCount}</td>
-          <td>${blog.location}</td>
-          <td><input type="button" value="修改"/></td>
+          <th scope="row"><img src="${pageContext.request.contextPath}${photo.imgPath }" alt="image" style="width: 200px;"/></th>
+          <td>${photo.title }</td>
+          <td>${photo.description }</td>
+          <td>${photo.groupName }</td>
+          <td><fmt:formatDate value="${photo.addTime}" pattern="yyyy-MM-dd"/></td>
+          <td><fmt:formatDate value="${photo.uptTime}" pattern="yyyy-MM-dd"/></td>
+          <td><input type="button" value="修改"/><input type="button" value="删除"/></td>
         </tr>
               	
       	</c:forEach>
@@ -72,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            <c:forEach items="${pageNoList }" var="item" varStatus="row">
            <li ><a style="<c:if test='${row.index + 1 eq page.pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/admin/articleList?pageNo=${row.index + 1}&pageSize=30" target="iframepage" >${row.index + 1}</a></li>
 		   </c:forEach>
-           <li class="<c:if test='${page.pageNo * page.pageSize >= blogcount}'>disabled</c:if>"><a  href="<c:if test='${page.pageNo * page.pageSize lt blogcount}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo + 1}&pageSize=30</c:if>" target="iframepage">Next</a></li>
+           <li class="<c:if test='${page.pageNo * page.pageSize >= photocount}'>disabled</c:if>"><a  href="<c:if test='${page.pageNo * page.pageSize lt photocount}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo + 1}&pageSize=30</c:if>" target="iframepage">Next</a></li>
        </ul>
     </div>
   </div>

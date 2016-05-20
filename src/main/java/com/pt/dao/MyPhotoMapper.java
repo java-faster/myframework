@@ -51,4 +51,6 @@ public interface MyPhotoMapper {
 	List<MyPhoto> getPhotoList(HashMap<String, Object> map);
 
 	List<MyPhoto> getPhotoListByGroup(HashMap<String, Object> map);
+
+	List<MyPhoto> getPhotoAllList();
 }

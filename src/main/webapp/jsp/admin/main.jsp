@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-indent nav_icon"></i>照片<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/admin/photo" target="iframepage">浏览照片</a>
+                                    <a href="${pageContext.request.contextPath }/admin/photo?pageNo=1&pageSize=10" target="iframepage">浏览照片</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath }/admin/addPhoto" target="iframepage">添加照片</a>
@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath }/admin/comment" target="iframepage"><i class="fa fa-flask nav_icon"></i>评论</a>
+                            <a href="${pageContext.request.contextPath }/admin/msg" target="iframepage"><i class="fa fa-flask nav_icon"></i>留言</a>
                         </li>
                          <li>
                             <a href="#"><i class="fa fa-check-square-o nav_icon"></i>流量统计<span class="fa arrow"></span></a>
