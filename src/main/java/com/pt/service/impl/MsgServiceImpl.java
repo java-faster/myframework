@@ -1,5 +1,6 @@
 package com.pt.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class MsgServiceImpl implements IMsgService {
 	@Transactional
 	@Override
 	public int insertMsg(MyMsg myMsg) {
+		myMsg.setState(0);
+		myMsg.setAddTime(new Date());
 		// TODO Auto-generated method stub
 		return myMsgMapper.insertSelective(myMsg);
 	}

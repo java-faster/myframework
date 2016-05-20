@@ -53,6 +53,7 @@ function sendMsg(){
 	    type: "POST",
 	    dataType: "text",
 	    data: {
+	    	title : "面试邀请",
 	    	name : name,
 	    	email : email,
 	    	content : content

@@ -171,9 +171,6 @@ public class BlogController {
 			return "0";
 		}
 		
-		myMsg.setState(0);
-		myMsg.setAddTime(new Date());
-		
 		if(msgService.insertMsg(myMsg)==0){
 			return "0";
 		}
