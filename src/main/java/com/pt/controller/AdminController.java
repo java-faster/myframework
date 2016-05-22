@@ -1,7 +1,6 @@
 package com.pt.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.base.Page;
 import com.pt.entity.MyBlog;
 import com.pt.entity.MyPhoto;
-import com.pt.entity.page.Page;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
 import com.pt.service.IPhotoService;
@@ -107,27 +106,6 @@ public class AdminController {
 		return "1";
 	}
 	
-	@RequestMapping(value = "/photo")
-	public ModelAndView photo(HttpServletRequest request, @ModelAttribute("page")Page page){
-		
-		ModelAndView mv = new ModelAndView();
-		
-		Integer pageNo = page.getPageNo();
-		Integer pageSize = page.getPageSize();
-
-		int count = photoService.getPhotoAllList().size();
-		mv.addObject("photoList", photoService.getPhotoList((pageNo - 1) * pageSize, pageSize));
-		mv.addObject("photocount", count);
-		int pageMaxNo = count / pageSize;
-		if (count % pageSize != 0) {
-			pageMaxNo++;
-		}
-		
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
-		
-		return mv;
-	}
-	
 	@RequestMapping(value = "/updArticle")
 	public ModelAndView blogDetail(HttpServletRequest request, @ModelAttribute("page")Page page){
 		ModelAndView mv = new ModelAndView();
@@ -165,4 +143,41 @@ public class AdminController {
 		}
 		return "1";
 	}
+	
+	@RequestMapping(value = "/photo")
+	public ModelAndView photo(HttpServletRequest request, @ModelAttribute("page")Page page){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Integer pageNo = page.getPageNo();
+		Integer pageSize = page.getPageSize();
+
+		int count = photoService.getPhotoAllList().size();
+		mv.addObject("photoList", photoService.getPhotoList((pageNo - 1) * pageSize, pageSize));
+		mv.addObject("photocount", count);
+		int pageMaxNo = count / pageSize;
+		if (count % pageSize != 0) {
+			pageMaxNo++;
+		}
+		
+		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/addPhoto")
+	public ModelAndView addPhoto(HttpServletRequest request){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/addNewPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String addNewPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
+		return "1";
+	}
+
 }

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.base.Page;
 import com.pt.entity.MyComment;
 import com.pt.entity.MyMsg;
 import com.pt.entity.MyPhoto;
-import com.pt.entity.page.Page;
 import com.pt.service.IBlogService;
 import com.pt.service.ICategoriesService;
 import com.pt.service.ICommentService;

@@ -1,4 +1,4 @@
-package com.pt.entity.page;
+package com.pt.base;
 
 
 public class Page {

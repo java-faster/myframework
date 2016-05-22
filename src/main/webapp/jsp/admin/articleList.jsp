@@ -65,8 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       	</c:forEach>
       </tbody>
     </table>
-   </div>
-   <div class="templatemo_paging">
+       <div class="templatemo_paging">
           <ul class="pagination">
            <li class="<c:if test='${page.pageNo eq 1}'>disabled</c:if>"><a href="<c:if test='${page.pageNo ne 1}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo - 1}&pageSize=30</c:if>" target="iframepage">Previous</a></li>
            <c:forEach items="${pageNoList }" var="item" varStatus="row">
@@ -75,6 +74,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            <li class="<c:if test='${page.pageNo * page.pageSize >= blogcount}'>disabled</c:if>"><a  href="<c:if test='${page.pageNo * page.pageSize lt blogcount}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo + 1}&pageSize=30</c:if>" target="iframepage">Next</a></li>
        </ul>
     </div>
+    
+   </div>
+
   </div>
   <div class="copy_layout">
       <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
