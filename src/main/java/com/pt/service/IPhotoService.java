@@ -12,4 +12,6 @@ public interface IPhotoService {
 	public List<MyPhoto> getPhotoAllListByGroup(String group);
 	public List<MyPhoto> getPhotoAllList();
 	public List<MyPhoto> getPhotoList(int stanum, int offset);
+	public int insertPhoto(MyPhoto myPhoto);
+	public int updPhoto(MyPhoto myPhoto);
 }

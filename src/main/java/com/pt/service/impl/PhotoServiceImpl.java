@@ -57,5 +57,18 @@ public class PhotoServiceImpl implements IPhotoService {
 		return myPhotoMapper.getPhotoList(map);
 	}
 
+	@Override
+	public int insertPhoto(MyPhoto myPhoto) {
+		// TODO Auto-generated method stub
+		myPhoto.setState(1);
+		return myPhotoMapper.insertSelective(myPhoto);
+	}
+
+	@Override
+	public int updPhoto(MyPhoto myPhoto) {
+		// TODO Auto-generated method stub
+		return myPhotoMapper.updateByPrimaryKeySelective(myPhoto);
+	}
+
 	
 }

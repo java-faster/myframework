@@ -1,5 +1,6 @@
 package com.pt.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -177,6 +178,58 @@ public class AdminController {
 	@RequestMapping(value = "/addNewPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String addNewPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
+		
+		if(StringUtils.isBlank(myPhoto.getTitle())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myPhoto.getImgPath())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myPhoto.getDescription())){
+			return "0";
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date today = new Date();
+		myPhoto.setUptTime(today);
+		myPhoto.setAddTime(today);
+		myPhoto.setGroupName(sdf.format(today));
+		
+		if(photoService.insertPhoto(myPhoto)==0){
+			return "0";
+		}
+		return "1";
+	}
+	
+	@RequestMapping(value = "/delPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String delPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
+		
+		myPhoto.setState(0);
+		
+		if(photoService.updPhoto(myPhoto)==0){
+			return "0";
+		}
+		return "1";
+	}
+	
+	@RequestMapping(value = "/updPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String updPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
+		
+		if(StringUtils.isBlank(myPhoto.getTitle())){
+			return "0";
+		}
+		if(StringUtils.isBlank(myPhoto.getDescription())){
+			return "0";
+		}
+		
+		Date today = new Date();
+		myPhoto.setUptTime(today);
+		
+		if(photoService.updPhoto(myPhoto)==0){
+			return "0";
+		}
 		return "1";
 	}
 

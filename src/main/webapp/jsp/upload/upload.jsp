@@ -9,6 +9,6 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 </head>
 <body>
-<img id="imgshow" style="width: 100%;height: 100%;" src="${pageContext.request.contextPath}${filePath}" alt="" />
+<img id="imgshow" style="width: 100%;height: 100%;" src="${pageContext.request.contextPath}${filePath}" alt="${filePath}" />
 </body>
 </html>

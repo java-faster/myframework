@@ -24,7 +24,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'/>
 <!---//webfonts--->  
 <!-- Bootstrap Core JavaScript -->
+
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function delPhoto(id){
+	
+	 $.ajax({
+	        url: "${pageContext.request.contextPath}/admin/delPhoto",
+	        type: "POST",
+	        dataType : 'text', 
+	        data : {
+	        	id:id
+	        	},
+	        async: false,
+	        success: function(data) {
+	        	if(data == 0){
+		    		alert("发送错误");
+		    	}else{
+		    		alert("发送成功");
+		    	}
+	        },
+	        error: function(msg) {
+	        	alert(msg);
+	        }
+	   });
+}
+
+function publishPhoto(id){
+	
+	 $.ajax({
+	        url: "${pageContext.request.contextPath}/admin/updPhoto",
+	        type: "POST",
+	        dataType : 'text', 
+	        data : {
+	        	id:id,
+	        	title:$("#title").val(),
+	        	description:$("#description").val()
+	        	},
+	        async: false,
+	        success: function(data) {
+	        	if(data == 0){
+		    		alert("发送错误");
+		    	}else{
+		    		alert("发送成功");
+		    	}
+	        },
+	        error: function(msg) {
+	        	alert(msg);
+	        }
+	   });
+}
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -48,12 +98,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <tr class="<c:if test='${row.index % 2 eq 0}'>active</c:if><c:if test='${row.index % 2 eq 1}'>success</c:if>">
           <th scope="row"><img src="${pageContext.request.contextPath}${photo.imgPath }" alt="image" style="width: 200px;"/></th>
-          <td>${photo.title }</td>
-          <td>${photo.description }</td>
+          <td><input id="title" type="text" value="${photo.title }"/></td>
+          <td><input id="description" type="text" value="${photo.description }"/></td>
           <td>${photo.groupName }</td>
           <td><fmt:formatDate value="${photo.addTime}" pattern="yyyy-MM-dd"/></td>
           <td><fmt:formatDate value="${photo.uptTime}" pattern="yyyy-MM-dd"/></td>
-          <td><input type="button" value="修改"/><input type="button" value="删除"/></td>
+          <td><input type="button" value="修改" onclick="return publishPhoto(${photo.id });"/><input type="button" value="删除" onclick="return delPhoto(${photo.id });"/></td>
         </tr>
               	
       	</c:forEach>

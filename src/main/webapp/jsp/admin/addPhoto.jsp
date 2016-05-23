@@ -14,6 +14,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/nicEdit.js"></script>
+<script type="text/javascript">
+function publishPhoto(){
+	 var img = window.frames["ifm"].document.getElementById("imgshow");
+	 if(img == null){
+		 alert("请插入图片");
+		 return;
+	 }
+	
+	 $.ajax({
+	        url: "${pageContext.request.contextPath}/admin/addNewPhoto",
+	        type: "POST",
+	        dataType : 'text', 
+	        data : {
+	        	title:$("#title").val(),
+	        	description:$("#description").val(),
+	        	imgPath:window.frames["ifm"].document.getElementById("imgshow").alt
+	        	},
+	        async: false,
+	        success: function(data) {
+	        	if(data == 0){
+		    		alert("发送错误");
+		    	}else{
+		    		alert("发送成功");
+		        	$("#title").val("");
+		        	$("#description").val("");
+		    	}
+	        },
+	        error: function(msg) {
+	        	alert(msg);
+	        }
+	   });
+}
+function cancelEdit(){
+	window.location.href="";
+}
+</script>
 </head>
 <body>
 <div class="div_from_aoto">
@@ -36,45 +72,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="file" id="meizz" name="photo" style="display: none" onchange="document.all.btn.click()"/>
 					<input type="button" value="选择照片" onclick="document.all.meizz.click()"/>
 					<input id="btn" type="submit" style="display: none" value="提交"/>
-                    <input type="button" class="btn btn-success" style="width:120px;" onclick="publishPhoto();" value="保存"/>
-                    <input type="button" class="btn btn-warning" style="width:120px;" onclick="cancelEdit();" value="取消"/>
+				<input type="button" class="btn btn-success" style="width:120px;" onclick="publishPhoto()" value="保存"/>
+                <input type="button" class="btn btn-warning" style="width:120px;" onclick="cancelEdit()" value="取消"/>
 				</form>  
-				<iframe id='ifm' name='ifm' style="border: 0px;width: 1024px;height: 768px;" />
+
+				<iframe id='ifm' name='ifm' style="border: 0px;width: 1024px;height: 768px;" src=""/>
                <div style="clear: both;"></div>
             </div>
 	   </div>
         
 </div>
-<script type="text/javascript">
-function publishPhoto(){
-	alert("11");
-	 $.ajax({
-	        url: "${pageContext.request.contextPath}/admin/addNewPhoto",
-	        type: "POST",
-	        dataType : 'text', 
-	        data : {
-	        	title:$("#title").val(),
-	        	description:$("#description").val(),
-	        	imgPath:window.frames["ifm"].document.getElementById("imgshow").value
-	        	},
-	        async: false,
-	        success: function(data) {
-	        	if(data == 0){
-		    		alert("发送错误");
-		    	}else{
-		    		alert("发送成功");
-		        	$("#title").val("");
-		        	$("#description").val("");
-		    	}
-	        },
-	        error: function(msg) {
-	        	alert(msg);
-	        }
-	   });
-}
-function cancelEdit(){
-	window.location.reload();
-}
-</script>
+
 </body>
 </html>

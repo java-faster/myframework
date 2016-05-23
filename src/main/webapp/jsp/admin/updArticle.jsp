@@ -81,7 +81,7 @@ function publishBlog(id){
 	   });
 }
 function cancelEdit(){
-	window.location.reload();
+	window.location.href="";
 }
 function removeHtmlTag(str){
 	return str.replace(/<[^>]+>/g,"");
