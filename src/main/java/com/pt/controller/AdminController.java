@@ -21,6 +21,11 @@ import com.pt.service.ICategoriesService;
 import com.pt.service.IPhotoService;
 import com.pt.util.StringUtils;
 
+/**
+ * 后台管理
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -59,16 +64,10 @@ public class AdminController {
 		Integer pageNo = page.getPageNo();
 		Integer pageSize = page.getPageSize();
 		String type = request.getParameter("type");
-
-		int count = blogService.getBlogAllList(type).size();
-		mv.addObject("bloglist", blogService.getBlogList(type, (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
-		mv.addObject("blogcount", count);
-		int pageMaxNo = count / pageSize;
-		if (count % pageSize != 0) {
-			pageMaxNo++;
-		}
 		
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		mv.addObject("bloglist", blogService.getBlogList(type, (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
+		
+		page.init(blogService.getBlogAllList(type).size());		
 		
 		return mv;
 	}
@@ -153,15 +152,8 @@ public class AdminController {
 		Integer pageNo = page.getPageNo();
 		Integer pageSize = page.getPageSize();
 
-		int count = photoService.getPhotoAllList().size();
 		mv.addObject("photoList", photoService.getPhotoList((pageNo - 1) * pageSize, pageSize));
-		mv.addObject("photocount", count);
-		int pageMaxNo = count / pageSize;
-		if (count % pageSize != 0) {
-			pageMaxNo++;
-		}
-		
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		page.init(photoService.getPhotoAllList().size());	
 		
 		return mv;
 	}
@@ -231,6 +223,14 @@ public class AdminController {
 			return "0";
 		}
 		return "1";
+	}
+	
+	@RequestMapping(value = "/getMsgList")
+	public ModelAndView getMsgList(HttpServletRequest request){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
 	}
 
 }

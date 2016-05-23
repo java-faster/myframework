@@ -68,6 +68,8 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<import resource="mail.xml"/>
+
     <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">  
         <property name="from">  
             <value>${mail.smtp.from}</value>  

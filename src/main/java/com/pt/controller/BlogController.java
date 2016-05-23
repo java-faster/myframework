@@ -24,6 +24,11 @@ import com.pt.service.IMsgService;
 import com.pt.service.IPhotoService;
 import com.pt.util.StringUtils;
 
+/**
+ * 博客展示
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/blog")
 public class BlogController {

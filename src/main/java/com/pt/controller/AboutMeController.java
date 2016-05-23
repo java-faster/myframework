@@ -15,6 +15,11 @@ import com.pt.service.IExpService;
 import com.pt.service.IMsgService;
 import com.pt.util.StringUtils;
 
+/**
+ * 关于我
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/aboutme")
 public class AboutMeController {

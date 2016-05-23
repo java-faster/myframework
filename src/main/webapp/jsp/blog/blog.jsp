@@ -96,7 +96,7 @@ ddsmoothmenu.init({
 			</c:forEach>
             
             <div class="clear"></div>
-            
+
             <div class="templatemo_paging">
                 <ul>
                     <c:if test="${pageNo ne 1}">
@@ -109,6 +109,7 @@ ddsmoothmenu.init({
                         <li><a  href="${pageContext.request.contextPath}/blog/blog?pageNo=${pageNo + 1}&pageSize=3" target="_parent">Next</a></li>
                     </c:if>
                 </ul>
+                
                 <div class="clear"></div>
             </div>
             

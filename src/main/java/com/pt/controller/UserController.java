@@ -12,6 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pt.entity.User;
 import com.pt.service.IUserService;
 
+/**
+ * 用户管理
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

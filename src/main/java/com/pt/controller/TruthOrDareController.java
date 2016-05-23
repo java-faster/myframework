@@ -1,5 +1,7 @@
 package com.pt.controller;
 
+import java.util.Random;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pt.service.ITruthOrDareService;
 import com.pt.util.StringUtils;
 
+/**
+ * 真心话大冒险
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/truthOrDare")
 public class TruthOrDareController {
@@ -33,6 +40,28 @@ public class TruthOrDareController {
 		modelMap.put("state","1");
 		modelMap.put("msg","正常");
 		modelMap.put("data",truthOrDareService.getTruthOrDareLst(Integer.valueOf(stanum),Integer.valueOf(offset)));
+		modelMap.put("count", truthOrDareService.getTruthOrDareAllLst().size());
+		
+		return modelMap;
+	}
+	
+	@RequestMapping(value = "/getRandomTruthOrDareLst")
+	@ResponseBody
+	public ModelMap getRandomTruthOrDareLst(HttpServletRequest request){	
+		ModelMap modelMap = new ModelMap();
+		
+		Integer stanum = (int)Math.floor(Math.random());
+		
+		String offset = request.getParameter("offset");
+		
+		if(!StringUtils.isNumberic(offset)){
+			modelMap.put("state","0");
+			modelMap.put("msg","服务器异常");
+		}
+
+		modelMap.put("state","1");
+		modelMap.put("msg","正常");
+		modelMap.put("data",truthOrDareService.getTruthOrDareLst(stanum,Integer.valueOf(offset)));
 		modelMap.put("count", truthOrDareService.getTruthOrDareAllLst().size());
 		
 		return modelMap;

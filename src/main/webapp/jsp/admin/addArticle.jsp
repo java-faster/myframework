@@ -72,9 +72,7 @@ function publishBlog(){
 		    		alert("发送错误");
 		    	}else{
 		    		alert("发送成功");
-		        	$("#title").val("");
-		        	$(".nicEdit-main").html("");
-		        	$("#categories").val("");
+		    		window.location.href="";
 		    	}
 	        },
 	        error: function(msg) {

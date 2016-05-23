@@ -22,6 +22,11 @@ import com.pt.service.IExpService;
 import com.pt.service.IMsgService;
 import com.pt.util.FileUpload;
 
+/**
+ * 上传图片
+ * @author gehb
+ *
+ */
 @Controller
 @RequestMapping("/upload")
 public class UploadImgController {
