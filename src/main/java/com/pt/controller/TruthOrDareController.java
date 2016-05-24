@@ -1,7 +1,5 @@
 package com.pt.controller;
 
-import java.util.Random;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.service.ITruthOrDareService;
 import com.pt.util.StringUtils;
@@ -23,6 +22,12 @@ import com.pt.util.StringUtils;
 public class TruthOrDareController {
 	@Resource
 	private ITruthOrDareService truthOrDareService;
+	
+	@RequestMapping(value = "/turntable")
+	public ModelAndView blogHome(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
 	
 	@RequestMapping(value = "/getTruthOrDareLst")
 	@ResponseBody
