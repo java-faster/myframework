@@ -33,7 +33,7 @@ public class CommentServiceImpl implements ICommentService {
 		return myCommentMapper.selectAllByBlogId(id);
 	}
 
-	@Transactional
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int insertComment(MyComment myComment) {
 		// TODO Auto-generated method stub

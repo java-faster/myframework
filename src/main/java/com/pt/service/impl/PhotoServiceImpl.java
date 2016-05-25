@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pt.dao.MyPhotoMapper;
 import com.pt.entity.MyPhoto;
@@ -57,6 +58,7 @@ public class PhotoServiceImpl implements IPhotoService {
 		return myPhotoMapper.getPhotoList(map);
 	}
 
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int insertPhoto(MyPhoto myPhoto) {
 		// TODO Auto-generated method stub
@@ -64,6 +66,7 @@ public class PhotoServiceImpl implements IPhotoService {
 		return myPhotoMapper.insertSelective(myPhoto);
 	}
 
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int updPhoto(MyPhoto myPhoto) {
 		// TODO Auto-generated method stub

@@ -18,7 +18,7 @@ public class MsgServiceImpl implements IMsgService {
 	@Resource
 	private MyMsgMapper myMsgMapper;
 
-	@Transactional
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int insertMsg(MyMsg myMsg) {
 		myMsg.setState(0);

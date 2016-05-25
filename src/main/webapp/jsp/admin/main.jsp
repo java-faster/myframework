@@ -195,9 +195,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <iframe src="${pageContext.request.contextPath }/admin/index" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width="100%" height="100%" id="iframepage" name="iframepage" onLoad="iFrameHeight();" ></iframe>
         </div>
         <!-- /#page-wrapper -->
-      <div class="copy_layout">
-      <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-      </div>
    </div>
     <!-- /#wrapper -->
 <!-- Metis Menu Plugin JavaScript -->

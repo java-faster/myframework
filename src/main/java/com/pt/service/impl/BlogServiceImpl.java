@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pt.dao.MyBlogMapper;
 import com.pt.entity.MyBlog;
@@ -38,11 +39,13 @@ public class BlogServiceImpl implements IBlogService {
 		return myBlogMapper.selectByPrimaryKey(id);
 	}
 
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int addBlog(MyBlog myBlog) {
 		return myBlogMapper.insertSelective(myBlog);
 	}
 
+	@Transactional(rollbackFor={Exception.class})
 	@Override
 	public int updBlog(MyBlog myBlog) {
 		// TODO Auto-generated method stub
