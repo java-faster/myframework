@@ -59,17 +59,9 @@ public class BlogController {
 		Integer pageNo = page.getPageNo();
 		Integer pageSize = page.getPageSize();
 		String type = request.getParameter("type");
-
-		int count = blogService.getBlogAllList(type).size();
+		
 		mv.addObject("bloglist", blogService.getBlogList(type, (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
-		mv.addObject("blogcount", count);
-		mv.addObject("pageNo", pageNo);
-		mv.addObject("pageSize", pageSize);
-		int pageMaxNo = count / pageSize;
-		if (count % pageSize != 0) {
-			pageMaxNo++;
-		}
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		page.init(blogService.getBlogAllList(type).size());
 
 		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());
 		return mv;
@@ -83,15 +75,7 @@ public class BlogController {
 		Integer pageSize = page.getPageSize();
 		
 		mv.addObject("grouplist",photoService.getPhotoGroupList((pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
-		mv.addObject("groupcount", photoService.getPhotoGroupAllList().size());
-		
-		mv.addObject("pageNo", pageNo);
-		mv.addObject("pageSize", pageSize);
-		int pageMaxNo = photoService.getPhotoGroupAllList().size()/pageSize;
-		if(photoService.getPhotoGroupAllList().size() % pageSize!=0){
-			pageMaxNo ++;
-		}
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		page.init(photoService.getPhotoGroupAllList().size());
 		
 		return mv;
 	}
@@ -180,17 +164,8 @@ public class BlogController {
 		Integer pageNo = page.getPageNo();
 		Integer pageSize = page.getPageSize();
 		
-		int count = commentService.getCommentAllList(Long.valueOf(id)).size();
 		mv.addObject("commentlist",commentService.getCommentList(Long.valueOf(id), (pageNo - 1) * pageSize, Integer.valueOf(pageSize)));
-		mv.addObject("commentcount", count);
-		
-		mv.addObject("pageNo", pageNo);
-		mv.addObject("pageSize", pageSize);
-		int pageMaxNo = count / pageSize;
-		if(count % pageSize!=0){
-			pageMaxNo ++;
-		}
-		mv.addObject("pageNoList", new Integer[pageMaxNo]);
+		page.init(commentService.getCommentAllList(Long.valueOf(id)).size());
 		
 		mv.addObject("blog",blogService.getBlogDetail(Long.valueOf(id)));
 		mv.addObject("categoriesList", categoriesService.getCategoriesAllList());

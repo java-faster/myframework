@@ -99,14 +99,14 @@ ddsmoothmenu.init({
 
             <div class="templatemo_paging">
                 <ul>
-                    <c:if test="${pageNo ne 1}">
-                   	    <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=${pageNo - 1}&pageSize=3" target="_parent">Previous</a></li>
+                    <c:if test="${page.pageNo ne 1}">
+                   	    <li><a href="${pageContext.request.contextPath}/blog/blog?pageNo=${page.pageNo - 1}&pageSize=${page.pageSize }" target="_parent">Previous</a></li>
                     </c:if>
-                    <c:forEach items="${pageNoList }" var="item" varStatus="row">
-                    <li ><a style="<c:if test='${row.index + 1 eq pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/blog/blog?pageNo=${row.index + 1}&pageSize=3" target="_parent" >${row.index + 1}</a></li>
+                    <c:forEach items="${page.pageNoList }" var="item" varStatus="row">
+                    <li ><a style="<c:if test='${row.index + 1 eq page.pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/blog/blog?pageNo=${row.index + 1}&pageSize=${page.pageSize }" target="_parent" >${row.index + 1}</a></li>
 					</c:forEach>
-                    <c:if test="${pageNo * pageSize lt blogcount}">
-                        <li><a  href="${pageContext.request.contextPath}/blog/blog?pageNo=${pageNo + 1}&pageSize=3" target="_parent">Next</a></li>
+                    <c:if test="${page.pageNo * page.pageSize lt page.count}">
+                        <li><a  href="${pageContext.request.contextPath}/blog/blog?pageNo=${page.pageNo + 1}&pageSize=${page.pageSize }" target="_parent">Next</a></li>
                     </c:if>
                 </ul>
                 

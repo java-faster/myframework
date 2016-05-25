@@ -112,11 +112,11 @@ function publishPhoto(id){
     
     <div class="templatemo_paging">
           <ul class="pagination">
-           <li class="<c:if test='${page.pageNo eq 1}'>disabled</c:if>"><a href="<c:if test='${page.pageNo ne 1}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo - 1}&pageSize=${page.pageSize}</c:if>" target="iframepage">Previous</a></li>
+           <li class="<c:if test='${page.pageNo eq 1}'>disabled</c:if>"><a href="<c:if test='${page.pageNo ne 1}'>${pageContext.request.contextPath}/admin/photo?pageNo=${page.pageNo - 1}&pageSize=${page.pageSize}</c:if>" target="iframepage">Previous</a></li>
            <c:forEach items="${page.pageNoList }" var="item" varStatus="row">
-           <li ><a style="<c:if test='${row.index + 1 eq page.pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/admin/articleList?pageNo=${row.index + 1}&pageSize=${page.pageSize}" target="iframepage" >${row.index + 1}</a></li>
+           <li ><a style="<c:if test='${row.index + 1 eq page.pageNo}'>color: white;</c:if>" href="${pageContext.request.contextPath}/admin/photo?pageNo=${row.index + 1}&pageSize=${page.pageSize}" target="iframepage" >${row.index + 1}</a></li>
 		   </c:forEach>
-           <li class="<c:if test='${page.pageNo * page.pageSize >= page.count}'>disabled</c:if>"><a  href="<c:if test='${page.pageNo * page.pageSize lt page.count}'>${pageContext.request.contextPath}/admin/articleList?pageNo=${page.pageNo + 1}&pageSize=${page.pageSize}</c:if>" target="iframepage">Next</a></li>
+           <li class="<c:if test='${page.pageNo * page.pageSize >= page.count}'>disabled</c:if>"><a  href="<c:if test='${page.pageNo * page.pageSize lt page.count}'>${pageContext.request.contextPath}/admin/photo?pageNo=${page.pageNo + 1}&pageSize=${page.pageSize}</c:if>" target="iframepage">Next</a></li>
        </ul>
     </div>
     
