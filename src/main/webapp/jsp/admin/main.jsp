@@ -165,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="${pageContext.request.contextPath }/admin/info" target="iframepage">资料</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/admin/password" target="iframepage">修改密码</a>
+                                    <a href="${pageContext.request.contextPath }/admin/exp" target="iframepage">经历</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

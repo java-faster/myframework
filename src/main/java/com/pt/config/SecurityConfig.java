@@ -24,8 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-			// TODO Auto-generated method stub
-			/** iframe加载问题（x-frame-options）
+		
+		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").anyRequest().permitAll()
+		.and().formLogin().loginPage("/user/login").usernameParameter("username")
+		.passwordParameter("password").failureUrl("/user/login?error")
+		.loginProcessingUrl("/login")
+		.defaultSuccessUrl("/admin/main")
+		/** iframe加载问题（x-frame-options）
 			当我们的jsp页面中使用了iframe时，可能出现该iframe中的内容无法加载的问题。
 			这是因为SpringSecurity提供的HeaderWriterFilter为response添加安全header信息。
 			其中就有一项是：X-Frame-Options选项。
@@ -35,12 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			ALLOW-FROM：允许frame加载任何页面。
 			SpringSecurity中默认设置X-Frame-Options的值为DENY
 		**/
-		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-		.and().formLogin().loginPage("/user/login").usernameParameter("username")
-		.passwordParameter("password").failureUrl("/user/login?error")
-		.loginProcessingUrl("/login")
-		.defaultSuccessUrl("/admin/main")
-		.and().csrf()
 		.and().headers().frameOptions().disable();
 	}
 }
