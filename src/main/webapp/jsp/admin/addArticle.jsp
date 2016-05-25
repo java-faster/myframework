@@ -60,6 +60,7 @@ function publishBlog(){
 	        type: "POST",
 	        dataType : 'text', 
 	        data : {
+	        	"${_csrf.parameterName}" : "${_csrf.token}",
 	        	title:$("#title").val(),
 	        	description:removeHtmlTag($(".nicEdit-main").html()),
 	        	content:$(".nicEdit-main").html(),

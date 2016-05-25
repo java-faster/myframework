@@ -119,7 +119,9 @@ function sendComment(id){
                     <div class="clear"></div>
 
 				</div>
+				<c:if test="${!empty blog.img}">
 				<img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
+                </c:if>
                 <p align="justify">${blog.description}</p>
                 <p align="justify">${blog.content}</p>
           </div>

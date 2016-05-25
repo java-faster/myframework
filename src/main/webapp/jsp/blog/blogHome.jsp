@@ -113,7 +113,9 @@ ddsmoothmenu.init({
 	                    <span class="post_comment">${blog.commentCount}</span>
 	                    <div class="clear"></div>
 					</div>
+					<c:if test="${!empty blog.img}">
 	                <img class="img_border_b img_nom" src="${pageContext.request.contextPath}${blog.img}" alt="Post Image 1" />
+	                </c:if>
 	                <p>${blog.description}</p>
 	                <a class="more" href="${pageContext.request.contextPath}/blog/blogDetail?id=${blog.id}">详细</a>
 	            </div>

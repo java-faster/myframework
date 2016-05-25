@@ -46,20 +46,4 @@ public class UploadImgController {
         mv.addObject("filePath", filePath);
         return mv;  
     }  
-  
-    @RequestMapping("download")  
-    public void download(String fileName, HttpServletResponse response) throws IOException {  
-        OutputStream os = response.getOutputStream();  
-        try {  
-            response.reset();  
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);  
-            response.setContentType("image/jpeg; charset=utf-8");  
-            os.write(FileUtils.readFileToByteArray(FileUpload.getFile(fileName)));  
-            os.flush();  
-        } finally {  
-            if (os != null) {  
-                os.close();  
-            }  
-        }  
-    }  
 }
