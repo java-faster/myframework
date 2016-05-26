@@ -68,10 +68,11 @@ function cancelEdit(){
 	   </div>
        <div class="control-group">
          	<div class="controls">
-               	<form action="${pageContext.request.contextPath}/upload/upload?pathName=photo" method="post" enctype="multipart/form-data" target="ifm"> 
+               	<form action="${pageContext.request.contextPath}/upload/upload" method="post" enctype="multipart/form-data" target="ifm"> 
 					<input type="file" id="meizz" name="photo" style="display: none" onchange="document.all.btn.click()"/>
 					<input type="button" value="选择照片" onclick="document.all.meizz.click()"/>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="hidden" name="pathName" value="photo" />
 					<input id="btn" type="submit" style="display: none" value="提交"/>
 				<input type="button" class="btn btn-success" style="width:120px;" onclick="publishPhoto()" value="保存"/>
                 <input type="button" class="btn btn-warning" style="width:120px;" onclick="cancelEdit()" value="取消"/>
