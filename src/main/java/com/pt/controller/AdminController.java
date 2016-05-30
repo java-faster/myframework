@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.base.BaseController;
 import com.pt.base.Page;
 import com.pt.entity.MyBlog;
 import com.pt.entity.MyPhoto;
@@ -28,7 +29,7 @@ import com.pt.util.StringUtils;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BaseController{
 
 	@Resource
 	private IBlogService blogService;

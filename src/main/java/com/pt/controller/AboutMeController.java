@@ -35,12 +35,22 @@ public class AboutMeController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/personResume")
 	public ModelAndView personResume(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
+	/**
+	 * 发送消息
+	 * @param myMsg
+	 * @return
+	 */
 	@RequestMapping(value = "/sendEmail", method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String sendEmail(@ModelAttribute("myMsg")MyMsg myMsg){
