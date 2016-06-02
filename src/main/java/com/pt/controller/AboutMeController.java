@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.common.Common;
 import com.pt.entity.MyMsg;
 import com.pt.service.IExpService;
 import com.pt.service.IMsgService;
@@ -55,24 +56,24 @@ public class AboutMeController {
 	@ResponseBody
 	public String sendEmail(@ModelAttribute("myMsg")MyMsg myMsg){
 		if(StringUtils.isBlank(myMsg.getName())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}		
 		if(StringUtils.isBlank(myMsg.getEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myMsg.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myMsg.getContent())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(!StringUtils.isEmail(myMsg.getEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		
 		if(msgService.insertMsg(myMsg)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 }

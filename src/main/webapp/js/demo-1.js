@@ -72,11 +72,16 @@
     function addListeners() {
         if(!('ontouchstart' in window)) {
             window.addEventListener('mousemove', mouseMove);
+            window.addEventListener('click', click);
         }
         window.addEventListener('scroll', scrollCheck);
         window.addEventListener('resize', resize);
     }
 
+    function click(e) {
+    	window.location.href="blog/blogHome";
+    }
+    
     function mouseMove(e) {
         var posx = posy = 0;
         if (e.pageX || e.pageY) {

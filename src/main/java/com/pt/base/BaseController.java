@@ -18,9 +18,9 @@ public class BaseController {
 	@InitBinder
 	protected void initBinder(WebDataBinder binder){
 	       binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), true));    
-	              binder.registerCustomEditor(int.class, new CustomNumberEditor(int.class, true)); 
-	              binder.registerCustomEditor(long.class, new CustomNumberEditor(long.class, true));  
-	              binder.registerCustomEditor(double.class, new CustomNumberEditor(double.class, true)); 
-	              binder.registerCustomEditor(float.class, new CustomNumberEditor(float.class, true));  
+	              binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, true)); 
+	              binder.registerCustomEditor(Long.class, new CustomNumberEditor(Long.class, true));  
+	              binder.registerCustomEditor(Double.class, new CustomNumberEditor(Double.class, true)); 
+	              binder.registerCustomEditor(Float.class, new CustomNumberEditor(Float.class, true));  
 	}
 }

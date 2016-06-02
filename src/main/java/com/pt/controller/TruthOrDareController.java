@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pt.common.Common;
 import com.pt.service.ITruthOrDareService;
 import com.pt.util.StringUtils;
 
@@ -42,7 +43,7 @@ public class TruthOrDareController {
 			modelMap.put("msg","服务器异常");
 		}
 
-		modelMap.put("state","1");
+		modelMap.put("state",Common.RETURN_NORMAL);
 		modelMap.put("msg","正常");
 		modelMap.put("data",truthOrDareService.getTruthOrDareLst(Integer.valueOf(stanum),Integer.valueOf(offset)));
 		modelMap.put("count", truthOrDareService.getTruthOrDareAllLst().size());
@@ -64,7 +65,7 @@ public class TruthOrDareController {
 			modelMap.put("msg","服务器异常");
 		}
 
-		modelMap.put("state","1");
+		modelMap.put("state",Common.RETURN_NORMAL);
 		modelMap.put("msg","正常");
 		modelMap.put("data",truthOrDareService.getTruthOrDareLst(stanum,Integer.valueOf(offset)));
 		modelMap.put("count", truthOrDareService.getTruthOrDareAllLst().size());

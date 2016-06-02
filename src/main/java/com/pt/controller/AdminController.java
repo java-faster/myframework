@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.base.BaseController;
 import com.pt.base.Page;
+import com.pt.common.Common;
 import com.pt.entity.MyBlog;
 import com.pt.entity.MyPhoto;
 import com.pt.service.IBlogService;
@@ -84,16 +85,16 @@ public class AdminController extends BaseController{
 	@ResponseBody
 	public String addNewArticle(@ModelAttribute("myBlog")MyBlog myBlog){
 		if(StringUtils.isBlank(myBlog.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getContent())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getDescription())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getCategories())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		Date today = new Date();
 		myBlog.setAddTime(today);
@@ -102,9 +103,9 @@ public class AdminController extends BaseController{
 		myBlog.setCommentCount(0);
 		
 		if(blogService.addBlog(myBlog)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/updArticle")
@@ -125,24 +126,24 @@ public class AdminController extends BaseController{
 	@ResponseBody
 	public String updExitArticle(@ModelAttribute("myBlog")MyBlog myBlog){
 		if(StringUtils.isBlank(myBlog.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getContent())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getDescription())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myBlog.getCategories())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		Date today = new Date();
 		myBlog.setUptTime(today);
 		
 		if(blogService.updBlog(myBlog)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/photo")
@@ -173,25 +174,25 @@ public class AdminController extends BaseController{
 	public String addNewPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
 		
 		if(StringUtils.isBlank(myPhoto.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myPhoto.getImgPath())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myPhoto.getDescription())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = new Date();
 		myPhoto.setUptTime(today);
 		myPhoto.setAddTime(today);
 		myPhoto.setGroupName(sdf.format(today));
 		
 		if(photoService.insertPhoto(myPhoto)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/delPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
@@ -201,9 +202,9 @@ public class AdminController extends BaseController{
 		myPhoto.setState(0);
 		
 		if(photoService.updPhoto(myPhoto)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/updPhoto",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")
@@ -211,19 +212,19 @@ public class AdminController extends BaseController{
 	public String updPhoto(@ModelAttribute("myPhoto")MyPhoto myPhoto){
 		
 		if(StringUtils.isBlank(myPhoto.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myPhoto.getDescription())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		
 		Date today = new Date();
 		myPhoto.setUptTime(today);
 		
 		if(photoService.updPhoto(myPhoto)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/getMsgList")

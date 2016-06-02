@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pt.base.Page;
+import com.pt.common.Common;
 import com.pt.entity.MyComment;
 import com.pt.entity.MyMsg;
 import com.pt.entity.MyPhoto;
@@ -130,25 +131,25 @@ public class BlogController {
 	@ResponseBody
 	public String sendMsg(@ModelAttribute("myMsg")MyMsg myMsg){
 		if(StringUtils.isBlank(myMsg.getName())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}		
 		if(StringUtils.isBlank(myMsg.getEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myMsg.getTitle())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myMsg.getContent())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(!StringUtils.isEmail(myMsg.getEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		
 		if(msgService.insertMsg(myMsg)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 	
 	@RequestMapping(value = "/blogDetail")
@@ -176,23 +177,23 @@ public class BlogController {
 	@ResponseBody
 	public String sendMsg(@ModelAttribute("myComment")MyComment myComment){
 		if(StringUtils.isBlank(myComment.getUserName())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}		
 		if(StringUtils.isBlank(myComment.getUserEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(StringUtils.isBlank(myComment.getContent())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		if(!StringUtils.isEmail(myComment.getUserEmail())){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
 		myComment.setAddTime(new Date());
 		myComment.setReplyState(0);
 		
 		if(commentService.insertComment(myComment)==0){
-			return "0";
+			return Common.RETURN_FAIL;
 		}
-		return "1";
+		return Common.RETURN_NORMAL;
 	}
 }
