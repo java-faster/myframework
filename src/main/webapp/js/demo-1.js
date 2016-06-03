@@ -79,7 +79,7 @@
     }
 
     function click(e) {
-    	window.location.href="blog/blogHome";
+    	window.location.href="map/allMap";
     }
     
     function mouseMove(e) {
