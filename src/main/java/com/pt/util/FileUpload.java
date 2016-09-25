@@ -18,11 +18,13 @@ public class FileUpload {
         String path = request.getParameter("pathName");
         if(path == null){
         	path = "";
+        }else{
+            path = path + "/";
         }
         
         File tempFile = new File(request.getSession().getServletContext().getRealPath(FILE_PATH + path), new Date().getTime() + "_" + String.valueOf(fileName));  
         if (!tempFile.getParentFile().exists()) {  
-            tempFile.getParentFile().mkdir();  
+            tempFile.getParentFile().mkdirs();  
         }  
         if (!tempFile.exists()) {  
             tempFile.createNewFile();  

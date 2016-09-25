@@ -40,6 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			ALLOW-FROM：允许frame加载任何页面。
 			SpringSecurity中默认设置X-Frame-Options的值为DENY
 		**/
-		.and().headers().frameOptions().disable();
+		.and().headers().frameOptions().disable().and().csrf().disable();
 	}
 }

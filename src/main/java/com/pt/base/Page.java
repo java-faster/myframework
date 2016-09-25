@@ -1,6 +1,10 @@
 package com.pt.base;
 
-
+/**
+ * 分页使用类
+ * @author gehb
+ *
+ */
 public class Page {
 	
 	Integer pageNo;
